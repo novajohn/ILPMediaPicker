@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ILPMediaPickerItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-xx-19b">
+                        <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-al-NxE">
+                                <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
+                                <animations/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pU1-zN-C1a">
+                                <rect key="frame" x="393" y="381" width="24" height="24"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="7yc-DJ-XgU">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <animations/>
+                                    </imageView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="7yc-DJ-XgU" firstAttribute="leading" secondItem="pU1-zN-C1a" secondAttribute="leading" id="54o-NO-6OI"/>
+                                    <constraint firstAttribute="width" constant="24" id="Oa8-2P-Jbh"/>
+                                    <constraint firstAttribute="bottom" secondItem="7yc-DJ-XgU" secondAttribute="bottom" id="UUo-p7-tJy"/>
+                                    <constraint firstAttribute="height" constant="24" id="dsJ-uv-HP4"/>
+                                    <constraint firstAttribute="trailing" secondItem="7yc-DJ-XgU" secondAttribute="trailing" id="epX-zk-QRt"/>
+                                    <constraint firstItem="7yc-DJ-XgU" firstAttribute="top" secondItem="pU1-zN-C1a" secondAttribute="top" id="iEQ-Vs-OSC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pU1-zN-C1a" secondAttribute="trailing" constant="4" id="2Uj-jE-gvX"/>
+                            <constraint firstAttribute="trailing" secondItem="nbr-al-NxE" secondAttribute="trailing" id="3EW-ra-bX1"/>
+                            <constraint firstAttribute="bottom" secondItem="pU1-zN-C1a" secondAttribute="bottom" constant="4" id="JTh-Kw-7w3"/>
+                            <constraint firstItem="nbr-al-NxE" firstAttribute="leading" secondItem="X9g-xx-19b" secondAttribute="leading" id="Kb8-cy-vQE"/>
+                            <constraint firstItem="nbr-al-NxE" firstAttribute="top" secondItem="X9g-xx-19b" secondAttribute="top" id="e1t-tU-b6W"/>
+                            <constraint firstAttribute="bottom" secondItem="nbr-al-NxE" secondAttribute="bottom" id="uoi-go-wSA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <constraints>
+                <constraint firstItem="X9g-xx-19b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1hB-U5-ZJd"/>
+                <constraint firstAttribute="bottom" secondItem="X9g-xx-19b" secondAttribute="bottom" id="CPM-fC-xKB"/>
+                <constraint firstAttribute="trailing" secondItem="X9g-xx-19b" secondAttribute="trailing" id="RgN-Rd-mcU"/>
+                <constraint firstItem="X9g-xx-19b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tEa-6Z-xKE"/>
+            </constraints>
+            <size key="customSize" width="421" height="409"/>
+            <connections>
+                <outlet property="checkmarkView" destination="pU1-zN-C1a" id="0Wp-F7-61N"/>
+                <outlet property="imageView" destination="nbr-al-NxE" id="hQF-dc-coh"/>
+            </connections>
+            <point key="canvasLocation" x="-156.5" y="107.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="blank_image" width="50" height="44"/>
+        <image name="checkmark" width="24" height="24"/>
+    </resources>
+</document>

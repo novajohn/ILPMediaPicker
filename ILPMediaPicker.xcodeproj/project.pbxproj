@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD88697D1BFEEE2600C94CFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869761BFEEE2600C94CFF /* main.m */; };
+		BD8869911BFEF01800C94CFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BD88698E1BFEF01800C94CFF /* AppDelegate.m */; };
+		BD8869921BFEF01800C94CFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869901BFEF01800C94CFF /* ViewController.m */; };
+		BD88699C1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */; };
+		BD88699D1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */; };
+		BD88699F1BFEF47B00C94CFF /* ILPMediaPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */; };
+		BD8869AA1BFEF4AD00C94CFF /* ILPImageCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */; };
+		BD8869AB1BFEF4AD00C94CFF /* ILPMediaCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A51BFEF4AD00C94CFF /* ILPMediaCollectionController.m */; };
+		BD8869AC1BFEF4AD00C94CFF /* ILPMediaPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A71BFEF4AD00C94CFF /* ILPMediaPickerController.m */; };
+		BD8869AD1BFEF4AD00C94CFF /* ILPVideoCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A91BFEF4AD00C94CFF /* ILPVideoCollectionController.m */; };
+		BD8869B21BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869AF1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m */; };
+		BD8869B31BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869B11BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m */; };
+		BD8869B61BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869B51BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m */; };
+		BD8869BD1BFEF5EC00C94CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD8869B91BFEF5EC00C94CFF /* LaunchScreen.storyboard */; };
+		BD8869BE1BFEF5EC00C94CFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD8869BB1BFEF5EC00C94CFF /* Main.storyboard */; };
+		BD8869C11BFEF97200C94CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8869C01BFEF97200C94CFF /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BD3C8ED71BD8B60A00A124B2 /* ILPMediaPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILPMediaPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD8869751BFEEE2600C94CFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Demo/Info.plist; sourceTree = SOURCE_ROOT; };
+		BD8869761BFEEE2600C94CFF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Demo/main.m; sourceTree = SOURCE_ROOT; };
+		BD88698D1BFEF01800C94CFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Demo/Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		BD88698E1BFEF01800C94CFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Demo/Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		BD88698F1BFEF01800C94CFF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Demo/Classes/ViewController.h; sourceTree = SOURCE_ROOT; };
+		BD8869901BFEF01800C94CFF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Demo/Classes/ViewController.m; sourceTree = SOURCE_ROOT; };
+		BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILPMediaPicker.h; sourceTree = "<group>"; };
+		BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerAddCell.xib; path = UI/ILPMediaPickerAddCell.xib; sourceTree = "<group>"; };
+		BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerItemCell.xib; path = UI/ILPMediaPickerItemCell.xib; sourceTree = "<group>"; };
+		BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ILPMediaPicker.xcassets; path = Resoures/ILPMediaPicker.xcassets; sourceTree = "<group>"; };
+		BD8869A21BFEF4AD00C94CFF /* ILPImageCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPImageCollectionController.h; path = Classes/Controllers/ILPImageCollectionController.h; sourceTree = "<group>"; };
+		BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPImageCollectionController.m; path = Classes/Controllers/ILPImageCollectionController.m; sourceTree = "<group>"; };
+		BD8869A41BFEF4AD00C94CFF /* ILPMediaCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaCollectionController.h; path = Classes/Controllers/ILPMediaCollectionController.h; sourceTree = "<group>"; };
+		BD8869A51BFEF4AD00C94CFF /* ILPMediaCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaCollectionController.m; path = Classes/Controllers/ILPMediaCollectionController.m; sourceTree = "<group>"; };
+		BD8869A61BFEF4AD00C94CFF /* ILPMediaPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaPickerController.h; path = Classes/Controllers/ILPMediaPickerController.h; sourceTree = "<group>"; };
+		BD8869A71BFEF4AD00C94CFF /* ILPMediaPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaPickerController.m; path = Classes/Controllers/ILPMediaPickerController.m; sourceTree = "<group>"; };
+		BD8869A81BFEF4AD00C94CFF /* ILPVideoCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPVideoCollectionController.h; path = Classes/Controllers/ILPVideoCollectionController.h; sourceTree = "<group>"; };
+		BD8869A91BFEF4AD00C94CFF /* ILPVideoCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPVideoCollectionController.m; path = Classes/Controllers/ILPVideoCollectionController.m; sourceTree = "<group>"; };
+		BD8869AE1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaPickerAddCell.h; path = Classes/Cells/ILPMediaPickerAddCell.h; sourceTree = "<group>"; };
+		BD8869AF1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaPickerAddCell.m; path = Classes/Cells/ILPMediaPickerAddCell.m; sourceTree = "<group>"; };
+		BD8869B01BFEF4BC00C94CFF /* ILPMediaPickerItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaPickerItemCell.h; path = Classes/Cells/ILPMediaPickerItemCell.h; sourceTree = "<group>"; };
+		BD8869B11BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaPickerItemCell.m; path = Classes/Cells/ILPMediaPickerItemCell.m; sourceTree = "<group>"; };
+		BD8869B41BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaCollectionFlowLayot.h; path = Classes/ILPMediaCollectionFlowLayot.h; sourceTree = "<group>"; };
+		BD8869B51BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaCollectionFlowLayot.m; path = Classes/ILPMediaCollectionFlowLayot.m; sourceTree = "<group>"; };
+		BD8869BA1BFEF5EC00C94CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/UI/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		BD8869BC1BFEF5EC00C94CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/UI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		BD8869C01BFEF97200C94CFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Demo/Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BD3C8ED41BD8B60A00A124B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BD3C8ECE1BD8B60A00A124B2 = {
+			isa = PBXGroup;
+			children = (
+				BD3C8EF11BD8B81F00A124B2 /* Demo */,
+				BD3C8EF21BD8B83200A124B2 /* ILPMediaPicker */,
+				BD3C8ED81BD8B60A00A124B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BD3C8ED81BD8B60A00A124B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD3C8ED71BD8B60A00A124B2 /* ILPMediaPicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD3C8EF11BD8B81F00A124B2 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869891BFEEF0400C94CFF /* Classes */,
+				BD8869931BFEF05100C94CFF /* UI */,
+				BD8869BF1BFEF91B00C94CFF /* Resources */,
+				BD8869761BFEEE2600C94CFF /* main.m */,
+				BD8869751BFEEE2600C94CFF /* Info.plist */,
+			);
+			name = Demo;
+			path = ILPMediaPicker;
+			sourceTree = "<group>";
+		};
+		BD3C8EF21BD8B83200A124B2 /* ILPMediaPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */,
+				BD8869951BFEF0F800C94CFF /* Classes */,
+				BD8869941BFEF0A800C94CFF /* UI */,
+				BD8869961BFEF12600C94CFF /* Resources */,
+			);
+			path = ILPMediaPicker;
+			sourceTree = "<group>";
+		};
+		BD8869891BFEEF0400C94CFF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BD88698D1BFEF01800C94CFF /* AppDelegate.h */,
+				BD88698E1BFEF01800C94CFF /* AppDelegate.m */,
+				BD88698F1BFEF01800C94CFF /* ViewController.h */,
+				BD8869901BFEF01800C94CFF /* ViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		BD8869931BFEF05100C94CFF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869B91BFEF5EC00C94CFF /* LaunchScreen.storyboard */,
+				BD8869BB1BFEF5EC00C94CFF /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		BD8869941BFEF0A800C94CFF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */,
+				BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		BD8869951BFEF0F800C94CFF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869B41BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.h */,
+				BD8869B51BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m */,
+				BD8869971BFEF15700C94CFF /* Controllers */,
+				BD8869981BFEF17A00C94CFF /* Cells */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		BD8869961BFEF12600C94CFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BD8869971BFEF15700C94CFF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869A61BFEF4AD00C94CFF /* ILPMediaPickerController.h */,
+				BD8869A71BFEF4AD00C94CFF /* ILPMediaPickerController.m */,
+				BD8869A41BFEF4AD00C94CFF /* ILPMediaCollectionController.h */,
+				BD8869A51BFEF4AD00C94CFF /* ILPMediaCollectionController.m */,
+				BD8869A21BFEF4AD00C94CFF /* ILPImageCollectionController.h */,
+				BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */,
+				BD8869A81BFEF4AD00C94CFF /* ILPVideoCollectionController.h */,
+				BD8869A91BFEF4AD00C94CFF /* ILPVideoCollectionController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		BD8869981BFEF17A00C94CFF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869AE1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.h */,
+				BD8869AF1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m */,
+				BD8869B01BFEF4BC00C94CFF /* ILPMediaPickerItemCell.h */,
+				BD8869B11BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		BD8869BF1BFEF91B00C94CFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BD8869C01BFEF97200C94CFF /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BD3C8ED61BD8B60A00A124B2 /* ILPMediaPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD3C8EEE1BD8B60A00A124B2 /* Build configuration list for PBXNativeTarget "ILPMediaPicker" */;
+			buildPhases = (
+				BD3C8ED31BD8B60A00A124B2 /* Sources */,
+				BD3C8ED41BD8B60A00A124B2 /* Frameworks */,
+				BD3C8ED51BD8B60A00A124B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ILPMediaPicker;
+			productName = ILPMediaPicker;
+			productReference = BD3C8ED71BD8B60A00A124B2 /* ILPMediaPicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BD3C8ECF1BD8B60A00A124B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				TargetAttributes = {
+					BD3C8ED61BD8B60A00A124B2 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = Q7EW3Q73FM;
+					};
+				};
+			};
+			buildConfigurationList = BD3C8ED21BD8B60A00A124B2 /* Build configuration list for PBXProject "ILPMediaPicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BD3C8ECE1BD8B60A00A124B2;
+			productRefGroup = BD3C8ED81BD8B60A00A124B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BD3C8ED61BD8B60A00A124B2 /* ILPMediaPicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BD3C8ED51BD8B60A00A124B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD8869BE1BFEF5EC00C94CFF /* Main.storyboard in Resources */,
+				BD88699F1BFEF47B00C94CFF /* ILPMediaPicker.xcassets in Resources */,
+				BD8869BD1BFEF5EC00C94CFF /* LaunchScreen.storyboard in Resources */,
+				BD8869C11BFEF97200C94CFF /* Assets.xcassets in Resources */,
+				BD88699D1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib in Resources */,
+				BD88699C1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BD3C8ED31BD8B60A00A124B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD88697D1BFEEE2600C94CFF /* main.m in Sources */,
+				BD8869AD1BFEF4AD00C94CFF /* ILPVideoCollectionController.m in Sources */,
+				BD8869B61BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m in Sources */,
+				BD8869AA1BFEF4AD00C94CFF /* ILPImageCollectionController.m in Sources */,
+				BD8869911BFEF01800C94CFF /* AppDelegate.m in Sources */,
+				BD8869AB1BFEF4AD00C94CFF /* ILPMediaCollectionController.m in Sources */,
+				BD8869AC1BFEF4AD00C94CFF /* ILPMediaPickerController.m in Sources */,
+				BD8869B21BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m in Sources */,
+				BD8869B31BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m in Sources */,
+				BD8869921BFEF01800C94CFF /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BD8869B91BFEF5EC00C94CFF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD8869BA1BFEF5EC00C94CFF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BD8869BB1BFEF5EC00C94CFF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD8869BC1BFEF5EC00C94CFF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BD3C8EEC1BD8B60A00A124B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BD3C8EED1BD8B60A00A124B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BD3C8EEF1BD8B60A00A124B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nj.loc.ILPMediaPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BD3C8EF01BD8B60A00A124B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nj.loc.ILPMediaPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BD3C8ED21BD8B60A00A124B2 /* Build configuration list for PBXProject "ILPMediaPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD3C8EEC1BD8B60A00A124B2 /* Debug */,
+				BD3C8EED1BD8B60A00A124B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD3C8EEE1BD8B60A00A124B2 /* Build configuration list for PBXNativeTarget "ILPMediaPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD3C8EEF1BD8B60A00A124B2 /* Debug */,
+				BD3C8EF01BD8B60A00A124B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BD3C8ECF1BD8B60A00A124B2 /* Project object */;
+}
