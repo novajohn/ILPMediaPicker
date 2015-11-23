@@ -37,7 +37,7 @@ static CGFloat const kILPMediaPickerItemSpacingDefault         = 5.0f;
 }
 
 //Designated initializer
-- initWithMediaType:(ILPMediaType)aType {
+- (instancetype)initWithMediaType:(ILPMediaType)aType {
     _collectionController = aType == ILPMediaTypePhoto ? [ILPImageCollectionController new] : [ILPVideoCollectionController new];
     _collectionController.delegate = self;
     self = [super initWithRootViewController:_collectionController];
