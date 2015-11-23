@@ -7,7 +7,6 @@
 //
 
 #import "ILPImageCollectionController.h"
-#import "ILPMediaPicker.h"
 
 static NSString * const kILPImagePickeBlankImageName = @"blank_image";
 static NSString * const kILPImagePickerAddImageName  = @"camera";

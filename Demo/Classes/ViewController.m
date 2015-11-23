@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ILPMediaPicker.h"
+#import "ILPMediaPickerController.h"
 
 static NSString * const kImagePickerTitle = @"Pick/Take An Image(s)";
 static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";

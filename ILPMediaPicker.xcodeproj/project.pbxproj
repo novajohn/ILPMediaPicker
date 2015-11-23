@@ -36,7 +36,6 @@
 		BD88698E1BFEF01800C94CFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Demo/Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		BD88698F1BFEF01800C94CFF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Demo/Classes/ViewController.h; sourceTree = SOURCE_ROOT; };
 		BD8869901BFEF01800C94CFF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Demo/Classes/ViewController.m; sourceTree = SOURCE_ROOT; };
-		BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILPMediaPicker.h; sourceTree = "<group>"; };
 		BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerAddCell.xib; path = UI/ILPMediaPickerAddCell.xib; sourceTree = "<group>"; };
 		BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerItemCell.xib; path = UI/ILPMediaPickerItemCell.xib; sourceTree = "<group>"; };
 		BD8869A21BFEF4AD00C94CFF /* ILPImageCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPImageCollectionController.h; path = Classes/Controllers/ILPImageCollectionController.h; sourceTree = "<group>"; };
@@ -102,7 +101,6 @@
 		BD3C8EF21BD8B83200A124B2 /* ILPMediaPicker */ = {
 			isa = PBXGroup;
 			children = (
-				BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */,
 				BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */,
 				BD8869951BFEF0F800C94CFF /* Classes */,
 				BD8869941BFEF0A800C94CFF /* UI */,
