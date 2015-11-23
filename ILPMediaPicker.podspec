@@ -90,7 +90,7 @@ ILPMediaPicker provides a simple way to select multiple images/video or create n
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "ILPMediaPicker/**/*.{h,m,xib}"
+  s.source_files  = "ILPMediaPicker/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
   s.public_header_files = "ILPMediaPicker/*.h"
@@ -105,7 +105,7 @@ ILPMediaPicker provides a simple way to select multiple images/video or create n
   #
 
   # s.resource  = "icon.png"
-  s.resources = "ILPMediaPicker/Resources/ILPMediaPicker.bundle"
+  s.resources = ["ILPMediaPicker/Resources/ILPMediaPicker.bundle", "ILPMediaPicker/**/*.xib"];
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
