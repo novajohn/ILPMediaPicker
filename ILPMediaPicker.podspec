@@ -64,7 +64,7 @@ ILPMediaPicker provides a simple way to select multiple images/video or create n
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios
+  s.platform     = :ios, "7.0"
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
@@ -93,7 +93,7 @@ ILPMediaPicker provides a simple way to select multiple images/video or create n
   s.source_files  = "ILPMediaPicker/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "ILPMediaPicker/*.h"
+  s.public_header_files = "ILPMediaPicker/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
