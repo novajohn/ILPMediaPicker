@@ -7,10 +7,14 @@
 //
 
 #import "ILPMediaPickerItemCell.h"
+#import "ILPMediaCollectionController.h"
+
+static NSString * const kILPMediaPickerCheckmarkImageName = @"checkmark";
 
 @interface ILPMediaPickerItemCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *checkmarkView;
+@property (weak, nonatomic) IBOutlet UIImageView *checkmarkImageView;
 
 @end
 
@@ -18,6 +22,7 @@
 
 - (void)awakeFromNib {
     _checkmarkView.hidden = YES;
+    _checkmarkImageView.image = [ILPMediaCollectionController mainBundleImageNamed:kILPMediaPickerCheckmarkImageName];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

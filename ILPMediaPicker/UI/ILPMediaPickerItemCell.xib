@@ -16,14 +16,14 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-xx-19b">
                         <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-al-NxE">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-al-NxE">
                                 <rect key="frame" x="0.0" y="0.0" width="421" height="409"/>
                                 <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pU1-zN-C1a">
                                 <rect key="frame" x="393" y="381" width="24" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="7yc-DJ-XgU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7yc-DJ-XgU">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <animations/>
                                     </imageView>
@@ -63,14 +63,11 @@
             </constraints>
             <size key="customSize" width="421" height="409"/>
             <connections>
+                <outlet property="checkmarkImageView" destination="7yc-DJ-XgU" id="Oau-UO-ZMl"/>
                 <outlet property="checkmarkView" destination="pU1-zN-C1a" id="0Wp-F7-61N"/>
                 <outlet property="imageView" destination="nbr-al-NxE" id="hQF-dc-coh"/>
             </connections>
             <point key="canvasLocation" x="-156.5" y="107.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="blank_image" width="50" height="44"/>
-        <image name="checkmark" width="24" height="24"/>
-    </resources>
 </document>

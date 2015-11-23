@@ -7,6 +7,10 @@
 //
 
 #import "ILPImageCollectionController.h"
+#import "ILPMediaPicker.h"
+
+static NSString * const kILPImagePickeBlankImageName = @"blank_image";
+static NSString * const kILPImagePickerAddImageName  = @"camera";
 
 @implementation ILPImageCollectionController
 
@@ -17,8 +21,8 @@
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         self.title = @"Pick an image";
-        self.blankImage = [UIImage imageNamed:@"blank_image"];
-        self.addImage = [UIImage imageNamed:@"camera"];
+        self.blankImage = [self.class mainBundleImageNamed:kILPImagePickeBlankImageName];
+        self.addImage   = [self.class mainBundleImageNamed:kILPImagePickerAddImageName];
         [self loadAssetsByType:ALAssetTypePhoto];
     }
     return self;

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD5B78851C030628005109D6 /* ILPMediaPicker.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */; };
+		BD5B78911C031903005109D6 /* ILPMediaPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD5B78901C031903005109D6 /* ILPMediaPicker.bundle */; };
 		BD88697D1BFEEE2600C94CFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869761BFEEE2600C94CFF /* main.m */; };
 		BD8869911BFEF01800C94CFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BD88698E1BFEF01800C94CFF /* AppDelegate.m */; };
 		BD8869921BFEF01800C94CFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869901BFEF01800C94CFF /* ViewController.m */; };
 		BD88699C1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */; };
 		BD88699D1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */; };
-		BD88699F1BFEF47B00C94CFF /* ILPMediaPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */; };
 		BD8869AA1BFEF4AD00C94CFF /* ILPImageCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */; };
 		BD8869AB1BFEF4AD00C94CFF /* ILPMediaCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A51BFEF4AD00C94CFF /* ILPMediaCollectionController.m */; };
 		BD8869AC1BFEF4AD00C94CFF /* ILPMediaPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869A71BFEF4AD00C94CFF /* ILPMediaPickerController.m */; };
@@ -27,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		BD3C8ED71BD8B60A00A124B2 /* ILPMediaPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILPMediaPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ILPMediaPicker.podspec; sourceTree = SOURCE_ROOT; };
+		BD5B78901C031903005109D6 /* ILPMediaPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ILPMediaPicker.bundle; path = Resources/ILPMediaPicker.bundle; sourceTree = "<group>"; };
 		BD8869751BFEEE2600C94CFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Demo/Info.plist; sourceTree = SOURCE_ROOT; };
 		BD8869761BFEEE2600C94CFF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Demo/main.m; sourceTree = SOURCE_ROOT; };
 		BD88698D1BFEF01800C94CFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Demo/Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -36,7 +39,6 @@
 		BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILPMediaPicker.h; sourceTree = "<group>"; };
 		BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerAddCell.xib; path = UI/ILPMediaPickerAddCell.xib; sourceTree = "<group>"; };
 		BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerItemCell.xib; path = UI/ILPMediaPickerItemCell.xib; sourceTree = "<group>"; };
-		BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ILPMediaPicker.xcassets; path = Resoures/ILPMediaPicker.xcassets; sourceTree = "<group>"; };
 		BD8869A21BFEF4AD00C94CFF /* ILPImageCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPImageCollectionController.h; path = Classes/Controllers/ILPImageCollectionController.h; sourceTree = "<group>"; };
 		BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPImageCollectionController.m; path = Classes/Controllers/ILPImageCollectionController.m; sourceTree = "<group>"; };
 		BD8869A41BFEF4AD00C94CFF /* ILPMediaCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaCollectionController.h; path = Classes/Controllers/ILPMediaCollectionController.h; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				BD8869991BFEF1F600C94CFF /* ILPMediaPicker.h */,
+				BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */,
 				BD8869951BFEF0F800C94CFF /* Classes */,
 				BD8869941BFEF0A800C94CFF /* UI */,
 				BD8869961BFEF12600C94CFF /* Resources */,
@@ -151,7 +154,7 @@
 		BD8869961BFEF12600C94CFF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BD88699E1BFEF47B00C94CFF /* ILPMediaPicker.xcassets */,
+				BD5B78901C031903005109D6 /* ILPMediaPicker.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -248,9 +251,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD8869BE1BFEF5EC00C94CFF /* Main.storyboard in Resources */,
-				BD88699F1BFEF47B00C94CFF /* ILPMediaPicker.xcassets in Resources */,
+				BD5B78911C031903005109D6 /* ILPMediaPicker.bundle in Resources */,
 				BD8869BD1BFEF5EC00C94CFF /* LaunchScreen.storyboard in Resources */,
 				BD8869C11BFEF97200C94CFF /* Assets.xcassets in Resources */,
+				BD5B78851C030628005109D6 /* ILPMediaPicker.podspec in Resources */,
 				BD88699D1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib in Resources */,
 				BD88699C1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib in Resources */,
 			);

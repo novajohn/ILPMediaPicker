@@ -30,7 +30,7 @@
                                 <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
-                                <state key="normal" title="Pick/Take An Image(s)" image="camera">
+                                <state key="normal" title="Pick/Take An Image(s)" image="ILPMediaPicker.bundle/camera.png">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -48,7 +48,7 @@
                                 <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
-                                <state key="normal" title="Pick/Capture A Video(s)" image="camcorder">
+                                <state key="normal" title="Pick/Capture A Video(s)" image="ILPMediaPicker.bundle/camcorder">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -56,7 +56,7 @@
                                     <action selector="videoPickButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OF0-gA-C5R"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="sHL-AA-2jn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ILPMediaPicker.bundle/blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="sHL-AA-2jn">
                                 <rect key="frame" x="212" y="134" width="177" height="177"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="width" secondItem="sHL-AA-2jn" secondAttribute="height" multiplier="1:1" id="6c4-bT-Oey"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="qA8-TR-APP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ILPMediaPicker.bundle/blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="qA8-TR-APP">
                                 <rect key="frame" x="404" y="134" width="177" height="177"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +72,7 @@
                                     <constraint firstAttribute="width" secondItem="qA8-TR-APP" secondAttribute="height" multiplier="1:1" id="G7q-rB-u1u"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="Egw-8g-mev">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ILPMediaPicker.bundle/blank_image" translatesAutoresizingMaskIntoConstraints="NO" id="Egw-8g-mev">
                                 <rect key="frame" x="20" y="134" width="177" height="177"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -115,8 +115,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="blank_image" width="50" height="44"/>
-        <image name="camcorder" width="50" height="31"/>
-        <image name="camera" width="50" height="45"/>
+        <image name="ILPMediaPicker.bundle/blank_image" width="50" height="45"/>
+        <image name="ILPMediaPicker.bundle/camcorder" width="50" height="45"/>
+        <image name="ILPMediaPicker.bundle/camera.png" width="50" height="45"/>
     </resources>
 </document>

@@ -10,6 +10,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "ILPMediaCollectionFlowLayot.h"
 
+static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
+
 @protocol ILPMediaCollectionDelegate;
 
 @interface ILPMediaCollectionController : UICollectionViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -24,6 +26,10 @@
 @property (readonly, nonatomic) UIImagePickerController *imagePicker;
 
 @property (weak, nonatomic) id<ILPMediaCollectionDelegate> delegate;
+
++ (NSBundle *)mainBundle;
+
++ (UIImage *)mainBundleImageNamed:(NSString *)anImageName;
 
 - (void)registerCells;
 

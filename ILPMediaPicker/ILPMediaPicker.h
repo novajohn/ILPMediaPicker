@@ -7,8 +7,5 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import <AssetsLibrary/AssetsLibrary.h>
-
 #import "ILPMediaPickerController.h"
-

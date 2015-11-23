@@ -40,6 +40,21 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 @dynamic collectionViewLayout;
 @dynamic delegate;
 
++ (NSBundle *)mainBundle {
+    static NSBundle *mainBundle = nil;
+    if (!mainBundle) {
+        NSBundle *classBundle = [NSBundle bundleForClass:[self class]];
+        NSURL *url = [classBundle URLForResource:kILPMediaPickerBundleName withExtension:@"bundle"];
+        mainBundle = [NSBundle bundleWithURL:url];
+    }
+    return mainBundle;
+}
+
++ (UIImage *)mainBundleImageNamed:(NSString *)anImageName {
+    UIImage *image = [UIImage imageNamed:anImageName inBundle:[self mainBundle] compatibleWithTraitCollection:nil];
+    return image;
+}
+
 - (instancetype)init {
     return [self initWithCollectionViewLayout:[ILPMediaCollectionFlowLayot new]];
 }
@@ -95,8 +110,10 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 }
 
 - (void)registerCells {
-    [self registerCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerItemCellNibName bundle:nil]];
-    [self registerAddCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerAddCellNibName bundle:nil]];
+    
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    [self registerCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerItemCellNibName bundle:bundle]];
+    [self registerAddCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerAddCellNibName bundle:bundle]];
 }
 
 - (void)registerCellNibOrClass:(id)nibOrClass {
