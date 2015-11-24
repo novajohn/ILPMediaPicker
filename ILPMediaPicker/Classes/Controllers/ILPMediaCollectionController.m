@@ -78,8 +78,6 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         
         _showAddCell = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
         
-        _showAddCell = YES;
-        
         [self registerCells];
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
