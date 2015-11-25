@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "ILPMediaPicker"
-  s.version             = "0.0.3"
+  s.version             = "0.1.0"
   s.summary             = "A simple but efficient picker to select or create media items for iOS apps."
   s.description         = <<-DESC
                             ILPMediaPicker provides a simple way to select multiple images/video or create new ones using camera.

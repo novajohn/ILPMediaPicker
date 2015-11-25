@@ -25,10 +25,19 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  The name for notification to be posted when the cell is tapped.
+ */
 static NSString * const kILPMediaPickerAddCellDidTapNotification = @"org.mediapicker.ilp.addcelldidtap";
 
+/**
+ *  The `ILPMediaPickerAddCell` is a custom class for the topmost cell in `ILPMediaPickerAddCell.xib`. The cell recognises a tap gesture and posts appropriative notification.
+ */
 @interface ILPMediaPickerAddCell : UICollectionViewCell
 
+/**
+ *  The background image view.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

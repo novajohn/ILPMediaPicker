@@ -27,37 +27,106 @@
 #import "ILPImageCollectionController.h"
 #import "ILPVideoCollectionController.h"
 
-typedef NS_ENUM(NSInteger) {
+/**
+ *  Constants that indicate a type of a `ILPMediaPickerController` instance.
+ */
+typedef NS_ENUM(NSInteger, ILPMediaType) {
+    /**
+     *  Indicates the instance to pick images and photos.
+     */
     ILPMediaTypePhoto,
+    /**
+     *  Indicates the instance to pick videos.
+     */
     ILPMediaTypeVideo
-} ILPMediaType;
+};
 
 @protocol ILPMediaPickerDelegate;
 
+/**
+ *  The `ILPMediaPickerController` class is a subclass of `UINavigationController`. It allows to use and configure media assets collection controller wrapped with a navigation controller regarding to the chosen type.
+ *
+ *  @warning The picker is based on Assets Library framework which is deprecated as of iOS 9.0.
+ */
 @interface ILPMediaPickerController : UINavigationController <ILPImageCollectionDelegate, ILPVideoCollectionDelegate>
 
-@property (nonatomic) ILPMediaType mediaType;
+/**
+ *----------------------------------------------
+ *  @name Configuring a Media Picker Controller
+ *----------------------------------------------
+ */
 
-@property (nonatomic) CGFloat itemsLimit;
+/**
+ *  The maximum number of items which could be selected.
+ */
+@property (nonatomic) NSInteger itemsLimit;
+
+/**
+ *  The maximum size of an item thumbnail. Here size means both width and height. Thumbnails are square.
+ */
 @property (nonatomic) CGFloat itemDeterminantSize;
+
+/**
+ *  The exact spacing value between thumbnails in a collection view. Applied both to items inter and line spacing.
+ */
 @property (nonatomic) CGFloat itemSpacing;
 
+/**
+ *  The object that acts as a delegate of the media picker controller.
+ */
 @property (weak, nonatomic) id<UINavigationControllerDelegate, ILPMediaPickerDelegate> delegate;
 
+/**
+ *----------------------------------------------
+ *  @name Initializing a Media Picker Controller
+ *----------------------------------------------
+ */
+
+/**
+ *  Creates and returns a picker controller of `ILPMediaTypePhoto` type;
+ *
+ *  @return A `ILPMediaPickerController` instance.
+ */
 + (instancetype)imagePicker;
 
+/**
+ *  Creates and returns a picker controller of `ILPMediaTypeVideo` type;
+ *
+ *  @return A `ILPMediaPickerController` instance.
+ */
 + (instancetype)videoPicker;
 
 @end
 
+/**
+ *  The `ILPMediaPickerDelegate` protocol defines methods that a delegate object should implement to be able to handle selected media items.
+ */
 @protocol ILPMediaPickerDelegate <UINavigationControllerDelegate>
 
 @optional
 
+/**
+ *  Notifies the delegate that the media items have been selected.
+ *
+ *  @param mediaPicker The `UIIMagePickerController` object that is notifying the delegate.
+ *  @param items       The array of selected items.
+ */
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didPickItems:(NSArray *)items;
 
+/**
+ *  Notifies the delegate that the new photo has been taken.
+ *
+ *  @param mediaPicker The `UIIMagePickerController` object that is notifying the delegate.
+ *  @param photo       The image of the taken photo.
+ */
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didTakePhoto:(UIImage *)photo;
 
+/**
+ *  Notifies the delegate that the new video has been captured.
+ *
+ *  @param mediaPicker The `UIIMagePickerController` object that is notifying the delegate.
+ *  @param videoUrl    The url for the new captured video.
+ */
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didCaptureVideoWithURL:(NSURL *)videoUrl;
 
 @end

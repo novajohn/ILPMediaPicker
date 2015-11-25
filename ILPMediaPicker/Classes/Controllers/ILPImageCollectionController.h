@@ -27,16 +27,31 @@
 
 @protocol ILPImageCollectionDelegate;
 
+/**
+ *  The `ILPImageCollectionController` class is a subclass of `ILPMediaCollectionController` which initially loads saved images assets and allows user to take a new photo.
+ */
 @interface ILPImageCollectionController : ILPMediaCollectionController
 
+/**
+ *  The object that acts as a delegate of the image collection controller.
+ */
 @property (weak, nonatomic) id<ILPMediaCollectionDelegate, ILPImageCollectionDelegate> delegate;
 
 @end
 
+/**
+ *  The `ILPImageCollectionDelegate` protocol defines the method that a delegate object should implement to be able to handle a new photo.
+ */
 @protocol ILPImageCollectionDelegate <ILPMediaCollectionDelegate>
 
 @optional
 
+/**
+ *  Notifies the delegate that the new photo has been taken.
+ *
+ *  @param controller The `ILPImageCollectionController` object that is notifying the delegate.
+ *  @param photo      The taken photo image.
+ */
 - (void)imageCollectionController:(ILPImageCollectionController *)controller didTakePhoto:(UIImage *)photo;
 
 @end

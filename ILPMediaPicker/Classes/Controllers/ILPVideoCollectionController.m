@@ -26,9 +26,8 @@
 #import "ILPVideoCollectionController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface ILPVideoCollectionController ()
-
-@end
+static NSString * const kILPVideoPickerBlankImageName = @"blank_video";
+static NSString * const kILPVideoPickerAddImageName   = @"camcorder";
 
 @implementation ILPVideoCollectionController
 
@@ -39,8 +38,8 @@
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         self.title = @"Video Picker";
-        self.blankImage = [UIImage imageNamed:@"blank_video"];
-        self.addImage = [UIImage imageNamed:@"camcorder"];
+        self.blankImage = [self.class mainBundleImageNamed:kILPVideoPickerBlankImageName];
+        self.addImage   = [self.class mainBundleImageNamed:kILPVideoPickerAddImageName];
         [self loadAssetsByType:ALAssetTypeVideo];
         
     }

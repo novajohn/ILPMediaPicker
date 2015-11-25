@@ -25,9 +25,19 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  The `ILPMediaCollectionFlowLayot` is an initial flow layout for an `ILPMediaCollectionController`. It calculates the exact item size with regarding to the `itemDeterminantSize` and `itemSpacing` properties.
+ */
 @interface ILPMediaCollectionFlowLayot : UICollectionViewFlowLayout
 
+/**
+ *  The maximum size of an item thumbnail. Here size means both width and height. Thumbnails are square.
+ */
 @property (nonatomic) CGFloat itemDeterminantSize;
+
+/**
+ *  The exact spacing value between thumbnails in a collection view. Applied both to items inter and line spacing.
+ */
 @property (nonatomic) CGFloat itemSpacing;
 
 @end

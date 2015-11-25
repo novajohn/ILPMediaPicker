@@ -35,12 +35,12 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 #pragma mark - Actions
 
 - (IBAction)imagePickButtonDidTap:(UIButton *)sender {
-    //if (!_imageMediaPicker) {
+    if (!_imageMediaPicker) {
         _imageMediaPicker = [ILPMediaPickerController imagePicker];
         _imageMediaPicker.title = kImagePickerTitle;
         _imageMediaPicker.itemsLimit = 3;
         _imageMediaPicker.delegate = self;
-    //}
+    }
     [self presentViewController:_imageMediaPicker animated:YES completion:nil];
 }
 
@@ -56,7 +56,7 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 #pragma mark - ILPMediaPickerDelegate
 
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didTakePhoto:(UIImage *)photo {
-   
+   //TODO: handle the new taken photo
 }
 
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didPickItems:(NSArray *)items {
@@ -70,7 +70,7 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 }
 
 - (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didCaptureVideoWithURL:(NSURL *)videoUrl {
-    NSLog(@"catpured video url: %@", videoUrl);
+    //TODO: use the url to work with new captured video
 }
 
 @end

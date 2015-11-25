@@ -31,6 +31,7 @@ static CGFloat const kILPMediaPickerItemSpacingDefault         = 5.0f;
 
 @interface ILPMediaPickerController ()
 
+@property (nonatomic) ILPMediaType mediaType;
 @property (strong, nonatomic) ILPMediaCollectionController *collectionController;
 
 @end
@@ -72,7 +73,7 @@ static CGFloat const kILPMediaPickerItemSpacingDefault         = 5.0f;
     _collectionController.title = title;
 }
 
-- (void)setItemsLimit:(CGFloat)limit {
+- (void)setItemsLimit:(NSInteger)limit {
     _collectionController.itemsLimit = limit;
     _itemsLimit = limit;
 }

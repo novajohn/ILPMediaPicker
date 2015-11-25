@@ -31,35 +31,84 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 
 @protocol ILPMediaCollectionDelegate;
 
+/**
+ *  The `ILPMediaCollectionController` class is a subclass of `UICollectionViewController` whose collection view manages `ILPMediaPickerItemCell` cells with media items thumbnails. It also could have an intial cell with control to create a new media if there is a such possibility.
+ *
+ *  @warning The class is using Assets Library framework which is deprecated as of iOS 9.0.
+ *
+ *  @warning The class should be mainly used as a target for inheritance. It does not call loadAssetsByType: initially.
+ *
+ */
 @interface ILPMediaCollectionController : UICollectionViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+/**
+ *  The maximum number of items which could be selected.
+ */
 @property (nonatomic) NSInteger itemsLimit;
 
+/**
+ *  The placeholder image for an item cell before the thumbnail is loaded.
+ */
 @property (strong, nonatomic) UIImage *blankImage;
+
+/**
+ *  The background image of the a cell for adding new item.
+ */
 @property (strong, nonatomic) UIImage *addImage;
 
+/**
+ *  The flow layout object used to initialize the media collection controller.
+ */
 @property (readonly, nonatomic) ILPMediaCollectionFlowLayot *collectionViewLayout;
 
+/**
+ *  The image picker controller object used to present the media collection controller.
+ */
 @property (readonly, nonatomic) UIImagePickerController *imagePicker;
 
+/**
+ *  The object that acts as a delegate of the media collection controller.
+ */
 @property (weak, nonatomic) id<ILPMediaCollectionDelegate> delegate;
 
+/**
+ *  Returns the main subbundle of the class bundle defined by `kILPMediaPickerBundleName` name.
+ *
+ *  @return The `NSbundle` object.
+ */
 + (NSBundle *)mainBundle;
 
+/**
+ *  Returns an image from the main bundle.
+ *
+ *  @param anImageName a name of the image to be loaded from the bundle.
+ *
+ *  @return The `UIImage` instance.
+ */
 + (UIImage *)mainBundleImageNamed:(NSString *)anImageName;
 
-- (void)registerCells;
-
-- (void)registerCellNibOrClass:(id)nibOrClass;
-
+/**
+ *  Loads assets from asset library concerning to the specified type.
+ *
+ *  @param assetType The ALAssetType constant.
+ */
 - (void)loadAssetsByType:(NSString *)assetType;
 
 @end
 
+/**
+ *  The `ILPMediaCollectionDelegate` protocol defines a method that a delegate object should implement to be able to handle selected assets.
+ */
 @protocol ILPMediaCollectionDelegate <NSObject>
 
 @optional
 
+/**
+ *  Notifies the delegate that the assets have been selected.
+ *
+ *  @param controller The `ILPMediaCollectionController` object that is notifying the delegate.
+ *  @param items      The selected assets.
+ */
 - (void)mediaCollectionController:(ILPMediaCollectionController *)controller didSelectItems:(NSArray<ALAsset *> *)items;
 
 @end

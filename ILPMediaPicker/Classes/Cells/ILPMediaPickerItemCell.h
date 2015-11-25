@@ -25,8 +25,14 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
+ */
 @interface ILPMediaPickerItemCell : UICollectionViewCell
 
+/**
+ *  The image view to show a blank/preloading image and an asset thumbnail.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

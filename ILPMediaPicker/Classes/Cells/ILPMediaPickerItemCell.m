@@ -42,14 +42,6 @@ static NSString * const kILPMediaPickerCheckmarkImageName = @"checkmark";
     _checkmarkImageView.image = [ILPMediaCollectionController mainBundleImageNamed:kILPMediaPickerCheckmarkImageName];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-     
-    }
-    return self;
-}
-
 - (void)setSelected:(BOOL)selected {
     super.selected = selected;
     

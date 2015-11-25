@@ -27,16 +27,31 @@
 
 @protocol ILPVideoCollectionDelegate;
 
+/**
+ *  The `ILPVideoCollectionController` class is a subclass of `ILPMediaCollectionController` which initially loads saved video assets and allows user to capture a new video.
+ */
 @interface ILPVideoCollectionController : ILPMediaCollectionController
 
-@property (nonatomic, weak) id<ILPMediaCollectionDelegate, ILPVideoCollectionDelegate> delegate;
+/**
+ *  The object that acts as a delegate of the video collection controller.
+ */
+@property (weak, nonatomic) id<ILPMediaCollectionDelegate, ILPVideoCollectionDelegate> delegate;
 
 @end
 
+/**
+ *  The `ILPVideoCollectionDelegate` protocol defines the method that a delegate object should implement to be able to handle a new video.
+ */
 @protocol ILPVideoCollectionDelegate <ILPMediaCollectionDelegate>
 
 @optional
 
+/**
+ *  Notifies the delegate that the new video has been captured.
+ *
+ *  @param controller The `ILPVideoCollectionController` object that is notifying the delegate.
+ *  @param videoURL   The url of the captured video.
+ */
 - (void)videoCollectionController:(ILPVideoCollectionController *)controller didCaptureVideoWithUrl:(NSURL *)videoURL;
 
 @end
