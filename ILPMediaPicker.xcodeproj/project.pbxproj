@@ -24,6 +24,9 @@
 		BD8869BD1BFEF5EC00C94CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD8869B91BFEF5EC00C94CFF /* LaunchScreen.storyboard */; };
 		BD8869BE1BFEF5EC00C94CFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD8869BB1BFEF5EC00C94CFF /* Main.storyboard */; };
 		BD8869C11BFEF97200C94CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8869C01BFEF97200C94CFF /* Assets.xcassets */; };
+		BD8ACD2C1C086B2400C414BF /* ILPAlbumCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8ACD2B1C086B2400C414BF /* ILPAlbumCollectionController.m */; };
+		BD8ACD2E1C08874D00C414BF /* ILPMediaPickerAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD8ACD2D1C08874D00C414BF /* ILPMediaPickerAlbumCell.xib */; };
+		BD8ACD311C088DA700C414BF /* ILPMediaPickerAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8ACD301C088DA700C414BF /* ILPMediaPickerAlbumCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,11 @@
 		BD8869BA1BFEF5EC00C94CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/UI/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		BD8869BC1BFEF5EC00C94CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/UI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		BD8869C01BFEF97200C94CFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Demo/Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		BD8ACD2A1C086B2400C414BF /* ILPAlbumCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPAlbumCollectionController.h; path = Classes/Controllers/ILPAlbumCollectionController.h; sourceTree = "<group>"; };
+		BD8ACD2B1C086B2400C414BF /* ILPAlbumCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPAlbumCollectionController.m; path = Classes/Controllers/ILPAlbumCollectionController.m; sourceTree = "<group>"; };
+		BD8ACD2D1C08874D00C414BF /* ILPMediaPickerAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ILPMediaPickerAlbumCell.xib; path = UI/ILPMediaPickerAlbumCell.xib; sourceTree = "<group>"; };
+		BD8ACD2F1C088DA700C414BF /* ILPMediaPickerAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaPickerAlbumCell.h; path = Classes/Cells/ILPMediaPickerAlbumCell.h; sourceTree = "<group>"; };
+		BD8ACD301C088DA700C414BF /* ILPMediaPickerAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaPickerAlbumCell.m; path = Classes/Cells/ILPMediaPickerAlbumCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 			children = (
 				BD88699A1BFEF46B00C94CFF /* ILPMediaPickerAddCell.xib */,
 				BD88699B1BFEF46B00C94CFF /* ILPMediaPickerItemCell.xib */,
+				BD8ACD2D1C08874D00C414BF /* ILPMediaPickerAlbumCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -168,6 +177,8 @@
 				BD8869A31BFEF4AD00C94CFF /* ILPImageCollectionController.m */,
 				BD8869A81BFEF4AD00C94CFF /* ILPVideoCollectionController.h */,
 				BD8869A91BFEF4AD00C94CFF /* ILPVideoCollectionController.m */,
+				BD8ACD2A1C086B2400C414BF /* ILPAlbumCollectionController.h */,
+				BD8ACD2B1C086B2400C414BF /* ILPAlbumCollectionController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -179,6 +190,8 @@
 				BD8869AF1BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m */,
 				BD8869B01BFEF4BC00C94CFF /* ILPMediaPickerItemCell.h */,
 				BD8869B11BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m */,
+				BD8ACD2F1C088DA700C414BF /* ILPMediaPickerAlbumCell.h */,
+				BD8ACD301C088DA700C414BF /* ILPMediaPickerAlbumCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -248,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8ACD2E1C08874D00C414BF /* ILPMediaPickerAlbumCell.xib in Resources */,
 				BD8869BE1BFEF5EC00C94CFF /* Main.storyboard in Resources */,
 				BD5B78911C031903005109D6 /* ILPMediaPicker.bundle in Resources */,
 				BD8869BD1BFEF5EC00C94CFF /* LaunchScreen.storyboard in Resources */,
@@ -270,8 +284,10 @@
 				BD8869B61BFEF4DD00C94CFF /* ILPMediaCollectionFlowLayot.m in Sources */,
 				BD8869AA1BFEF4AD00C94CFF /* ILPImageCollectionController.m in Sources */,
 				BD8869911BFEF01800C94CFF /* AppDelegate.m in Sources */,
+				BD8ACD2C1C086B2400C414BF /* ILPAlbumCollectionController.m in Sources */,
 				BD8869AB1BFEF4AD00C94CFF /* ILPMediaCollectionController.m in Sources */,
 				BD8869AC1BFEF4AD00C94CFF /* ILPMediaPickerController.m in Sources */,
+				BD8ACD311C088DA700C414BF /* ILPMediaPickerAlbumCell.m in Sources */,
 				BD8869B21BFEF4BC00C94CFF /* ILPMediaPickerAddCell.m in Sources */,
 				BD8869B31BFEF4BC00C94CFF /* ILPMediaPickerItemCell.m in Sources */,
 				BD8869921BFEF01800C94CFF /* ViewController.m in Sources */,

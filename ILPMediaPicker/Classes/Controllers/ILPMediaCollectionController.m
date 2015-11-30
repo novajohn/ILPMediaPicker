@@ -24,8 +24,6 @@
 //
 
 #import "ILPMediaCollectionController.h"
-#import "ILPMediaPickerItemCell.h"
-#import "ILPMediaPickerAddCell.h"
 
 static NSString * const kILPMediaPickerItemCellNibName    = @"ILPMediaPickerItemCell";
 static NSString * const kILPMediaPickerItemCellReusableId = @"ilpMediaPickerItemCell";
@@ -37,7 +35,7 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 
 @interface ILPMediaCollectionController ()
 
-@property (copy, nonatomic) NSMutableArray<ALAsset *> *assets;
+@property (copy, nonatomic) NSMutableArray *assetsData;
 @property (copy, nonatomic) NSMutableArray *selectedIndexPaths;
 
 @property (copy, nonatomic) NSMutableDictionary *thumbnailsCache;
@@ -81,7 +79,7 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     if (self) {
         
         _selectedIndexPaths = [NSMutableArray array];
-        _assets = [NSMutableArray array];
+        _assetsData = [NSMutableArray array];
         _thumbnailsCache = [NSMutableDictionary dictionary];
         _loadingIndexPaths = [NSMutableSet set];
         
@@ -94,6 +92,8 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         _blankImage = nil;
         
         _showAddCell = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+        
+        _showAddCell = YES;
         
         [self registerCells];
         
@@ -109,10 +109,10 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddNotification:) name:kILPMediaPickerAddCellDidTapNotification object:nil];
         
+        
     }
     return  self;
 }
-
 
 - (UIImagePickerController *)imagePicker {
     if (_showAddCell && !_imagePicker) {
@@ -135,7 +135,7 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     if ([nibOrClass isKindOfClass:UINib.class]) {
         [self.collectionView registerNib:nibOrClass forCellWithReuseIdentifier:kILPMediaPickerItemCellReusableId];
     }
-    else if ([nibOrClass isKindOfClass:UICollectionViewCell.class]) {
+    else if (nibOrClass == UICollectionViewCell.class) {
         [self.collectionView registerClass:nibOrClass forCellWithReuseIdentifier:nibOrClass];
     }
 }
@@ -156,29 +156,27 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     
     [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
                                   usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                                      [group enumerateAssetsUsingBlock:^(ALAsset *asset, NSUInteger index, BOOL *stop) {
-                                          if (asset) {
-                                              
-                                              if (assetType && [[asset valueForProperty:ALAssetPropertyType] isEqualToString:assetType]) {
-                                                  [_assets insertObject:asset atIndex:0];
-                                              }
-                                              else {
-                                                  
-                                              }
-                                          }
-                                          else {
-                                              [self.collectionView reloadData];
-                                          }
-                                      }];
+                                      [self loadAssetsByType:assetType fromGroup:group];
                                   }
                                 failureBlock:nil];
-    
+}
+
+- (void)loadAssetsByType:(NSString *)assetType fromGroup:(ALAssetsGroup *)anAssetGroup {
+    [anAssetGroup enumerateAssetsUsingBlock:^(ALAsset *asset, NSUInteger index, BOOL *stop) {
+        if (asset && [[asset valueForProperty:ALAssetPropertyType] isEqualToString:assetType]) {
+            [self addAssetToData:asset];
+        }
+    }];
+}
+
+- (void)addAssetToData:(id)anAsset {
+    [_assetsData insertObject:anAsset atIndex:0];
 }
 
 #pragma mark - Collection View Data Source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _showAddCell ? _assets.count + 1 : _assets.count;
+    return _showAddCell ? _assetsData.count + 1 : _assetsData.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -189,20 +187,24 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         return cell;
     }
     
-    ILPMediaPickerItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerItemCellReusableId forIndexPath:indexPath];
-    
+    ILPMediaPickerItemCell *cell = [self reusedItemCellForIndexPath:indexPath];
+    [self willLoadItemCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)willLoadItemCell:(ILPMediaPickerItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     ALAsset *asset = [self dataAssetForIndexPath:indexPath];
     NSString *assetUrl = asset.defaultRepresentation.url.absoluteString;
     UIImage *thumbnail = _thumbnailsCache[assetUrl];
     
     if (thumbnail) {
         [self setImage:thumbnail forCell:cell];
-        return cell;
+        return;
     }
     
     if ([_loadingIndexPaths containsObject:indexPath]) {
         [self setCellBlankImage:cell];
-        return cell;
+        return;
     }
     
     if (!_thumbnailQueue) {
@@ -213,10 +215,7 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     [self setCellBlankImage:cell];
     dispatch_async(_thumbnailQueue, ^{
         if ([_loadingIndexPaths containsObject:indexPath]) {
-            if (indexPath.row == 0) {
-                sleep(1);
-            }
-            UIImage *thumbnail = [self loadThumbnailFromAsset:asset];
+            UIImage *thumbnail = [self loadThumbnailFromImage:[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage]];
             _thumbnailsCache[assetUrl] = thumbnail;
             [_loadingIndexPaths removeObject:indexPath];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -227,13 +226,15 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         }
         
     });
-    
-    return cell;
+}
+
+- (ILPMediaPickerItemCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath {
+    return [self.collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerItemCellReusableId forIndexPath:indexPath];
 }
 
 - (ALAsset *)dataAssetForIndexPath:(NSIndexPath *)indexPath {
     NSInteger dataIndex = _showAddCell ? indexPath.row - 1: indexPath.row;
-    return _assets[dataIndex];
+    return _assetsData[dataIndex];
 }
 
 - (void)setCellBlankImage:(ILPMediaPickerItemCell *)cell {
@@ -249,10 +250,10 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     [_loadingIndexPaths removeObject:indexPath];
 }
 
-- (UIImage *)loadThumbnailFromAsset:(ALAsset *)asset {
+- (UIImage *)loadThumbnailFromImage:(UIImage *)image {
     UIImage *thumbnail;
     CGRect thumbRect = CGRectMake(0, 0, self.collectionViewLayout.itemDeterminantSize, self.collectionViewLayout.itemDeterminantSize);
-    CGImageRef imageRef = asset.defaultRepresentation.fullScreenImage;
+    CGImageRef imageRef = image.CGImage;
     
     CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
     

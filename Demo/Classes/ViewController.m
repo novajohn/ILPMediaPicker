@@ -39,6 +39,7 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
         _imageMediaPicker = [ILPMediaPickerController imagePicker];
         _imageMediaPicker.title = kImagePickerTitle;
         _imageMediaPicker.itemsLimit = 3;
+        _imageMediaPicker.itemDeterminantSize = 500;
         _imageMediaPicker.delegate = self;
     }
     [self presentViewController:_imageMediaPicker animated:YES completion:nil];

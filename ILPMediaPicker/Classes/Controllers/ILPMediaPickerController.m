@@ -25,6 +25,7 @@
 
 #import "ILPMediaPickerController.h"
 #import "ILPMediaPickerItemCell.h"
+#import "ILPAlbumCollectionController.h"
 
 static CGFloat const kILPMediaPickerItemDeterminantSizeDefault = 200.0f;
 static CGFloat const kILPMediaPickerItemSpacingDefault         = 5.0f;
@@ -56,7 +57,9 @@ static CGFloat const kILPMediaPickerItemSpacingDefault         = 5.0f;
 
 //Designated initializer
 - (instancetype)initWithMediaType:(ILPMediaType)aType {
-    _collectionController = aType == ILPMediaTypePhoto ? [ILPImageCollectionController new] : [ILPVideoCollectionController new];
+    //_collectionController = aType == ILPMediaTypePhoto ? [ILPImageCollectionController new] : [ILPVideoCollectionController new];
+    _collectionController = [ILPAlbumCollectionController new];
+    
     _collectionController.delegate = self;
     self = [super initWithRootViewController:_collectionController];
     if (self) {

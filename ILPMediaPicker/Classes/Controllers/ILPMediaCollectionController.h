@@ -26,6 +26,8 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "ILPMediaCollectionFlowLayot.h"
+#import "ILPMediaPickerItemCell.h"
+#import "ILPMediaPickerAddCell.h"
 
 static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 
@@ -90,9 +92,31 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 /**
  *  Loads assets from asset library concerning to the specified type.
  *
- *  @param assetType The ALAssetType constant.
+ *  @param assetType The `ALAssetType` constant.
  */
 - (void)loadAssetsByType:(NSString *)assetType;
+
+/**
+ *  Loads assets from a given group.
+ *
+ *  @param anAssetGroup an `ALAssetGroup` instance.
+ */
+- (void)loadAssetsByType:(NSString *)assetType fromGroup:(ALAssetsGroup *)anAssetGroup;
+
+/**
+ *  Adds asset object to collection view data source.
+ *
+ *  @param anAsset an `ALAsset/ALAssetGroup` objesct.
+ */
+- (void)addAssetToData:(id)anAsset;
+
+- (id)dataAssetForIndexPath:(NSIndexPath *)indexPath;
+
+- (void)registerCellNibOrClass:(id)nibOrClass;
+
+- (ILPMediaPickerItemCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath;
+
+- (void)willLoadItemCell:(ILPMediaPickerItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
