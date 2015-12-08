@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPMediaLibrary.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,13 +23,49 @@
 //  THE SOFTWARE.
 //
 
+@import Foundation;
 @import UIKit;
 
-#import "ILPMediaPickerCell.h"
+#import "ILPMediaPicker.h"
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+@protocol ILPMediaAsset <NSObject>
+
+- (void)loadImageWithSize:(CGSize)size withHandleBlock:(void(^)(UIImage *image))block;
+
+@end
+
+@protocol ILPMediaGroup <NSObject>
+
+- (NSString *)name;
+
+- (NSInteger)numberOfAsset;
+
+- (void)loadPosterWithSize:(CGSize)size withHandleBlock:(void(^)(UIImage *image))block;
+
+- (id)baseAsset;
+
+@end
+
+@protocol ILPMediaLibrary <NSObject>
+
+- (void)setMediaType:(ILPMediaType)mediaType;
+
+- (void)loadGroupsWithBlock:(void(^)(NSArray<id<ILPMediaGroup>> *groups))block;
+
+- (void)loadAssetsWithBlock:(void(^)(NSArray<id<ILPMediaAsset>> *assets))block;
+
+- (void)loadAssetsWithGroup:(id<ILPMediaGroup>)group withHandleBlock:(void(^)(NSArray<id<ILPMediaAsset>> *assets))block;
+
+- (NSInteger)numberOfAssets;
+
+- (NSArray<id<ILPMediaAsset>> *)assets;
+
+- (NSInteger)numberOfGroups;
+
+- (NSArray<id<ILPMediaGroup>> *)groups;
+
+- (void)setSelectedGroup:(id<ILPMediaGroup>)mediaGroup;
+
+- (id<ILPMediaAsset>)assetAtIndex:(NSInteger)index;
 
 @end

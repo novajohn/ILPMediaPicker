@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPALAssetsLibrary.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,13 +23,18 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+@import Foundation;
+@import AssetsLibrary;
+#import "ILPMediaLibrary.h"
 
-#import "ILPMediaPickerCell.h"
+@interface ILPALAssetsLibrary : NSObject<ILPMediaLibrary>
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+@end
+
+@interface ALAssetsGroup (ILPMediaGroup)<ILPMediaGroup>;
+
+@end
+
+@interface ALAsset (ILPMediaAsset)<ILPMediaAsset>
 
 @end

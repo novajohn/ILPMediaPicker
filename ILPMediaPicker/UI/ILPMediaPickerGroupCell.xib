@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fdF-NQ-qC7" customClass="ILPMediaPickerAlbumCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fdF-NQ-qC7" customClass="ILPMediaPickerGroupCell">
             <rect key="frame" x="0.0" y="0.0" width="354" height="325"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -17,12 +17,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Keh-K3-sJq">
                         <rect key="frame" x="0.0" y="0.0" width="354" height="325"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S59-OL-npM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S59-OL-npM">
                                 <rect key="frame" x="0.0" y="0.0" width="354" height="325"/>
                                 <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPQ-t3-ZeF">
-                                <rect key="frame" x="0.0" y="127" width="354" height="71"/>
+                                <rect key="frame" x="0.0" y="254" width="354" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvV-BY-2Me">
                                         <rect key="frame" x="0.0" y="15" width="354" height="22"/>
@@ -66,8 +66,8 @@
                             <constraint firstAttribute="trailing" secondItem="S59-OL-npM" secondAttribute="trailing" id="1iI-Cm-xBm"/>
                             <constraint firstItem="S59-OL-npM" firstAttribute="top" secondItem="Keh-K3-sJq" secondAttribute="top" id="53V-Ey-iXq"/>
                             <constraint firstAttribute="trailing" secondItem="pPQ-t3-ZeF" secondAttribute="trailing" id="DUp-7n-PFs"/>
-                            <constraint firstItem="pPQ-t3-ZeF" firstAttribute="centerY" secondItem="Keh-K3-sJq" secondAttribute="centerY" id="Ldf-Re-VUb"/>
                             <constraint firstItem="pPQ-t3-ZeF" firstAttribute="leading" secondItem="Keh-K3-sJq" secondAttribute="leading" id="Yaw-j9-xzu"/>
+                            <constraint firstAttribute="bottom" secondItem="pPQ-t3-ZeF" secondAttribute="bottom" id="fnM-bf-jdb"/>
                             <constraint firstItem="S59-OL-npM" firstAttribute="leading" secondItem="Keh-K3-sJq" secondAttribute="leading" id="oEl-LU-Muj"/>
                             <constraint firstAttribute="bottom" secondItem="S59-OL-npM" secondAttribute="bottom" id="ueF-4I-5h7"/>
                         </constraints>

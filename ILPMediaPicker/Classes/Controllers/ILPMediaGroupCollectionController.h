@@ -1,5 +1,5 @@
 //
-//  ILPAlbumCollectionController.h
+//  ILPMediaGroupCollectionController.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,8 +23,14 @@
 //  THE SOFTWARE.
 //
 
-#import "ILPImageCollectionController.h"
+#import "ILPMediaCollectionController.h"
 
-@interface ILPAlbumCollectionController : ILPImageCollectionController
+typedef void(^ILPMediaSelectedGroupBlock)(id<ILPMediaGroup> group);
+
+@interface ILPMediaGroupCollectionController : ILPMediaCollectionController
+
+@property (nonatomic, copy) ILPMediaSelectedGroupBlock selectedGroupBlock;
+
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType withSelectedGroupBlock:(ILPMediaSelectedGroupBlock)selectedBlock;
 
 @end

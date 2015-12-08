@@ -28,7 +28,7 @@
 /**
  *  The name for notification to be posted when the cell is tapped.
  */
-static NSString * const kILPMediaPickerAddCellDidTapNotification = @"org.mediapicker.ilp.addcelldidtap";
+static NSString * const kILPMediaPickerAddCellDidTapNotification = @"ILPMediaPickerAddCellDidTapNotification";
 
 /**
  *  The `ILPMediaPickerAddCell` is a custom class for the topmost cell in `ILPMediaPickerAddCell.xib`. The cell recognises a tap gesture and posts appropriative notification.

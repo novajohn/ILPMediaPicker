@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPMediaPicker.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,13 +23,26 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
-
-#import "ILPMediaPickerCell.h"
+@import Foundation;
 
 /**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
+ *  Constants that indicate a type of a `ILPMediaPickerController` instance.
  */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+typedef NS_ENUM(NSInteger, ILPMediaType) {
+    
+    ILPMediaTypeAll,
+    
+    /**
+     *  Indicates the instance to pick images and photos.
+     */
+    ILPMediaTypeImage,
+    /**
+     *  Indicates the instance to pick videos.
+     */
+    ILPMediaTypeVideo,
+    
+};
+
+@interface ILPMediaPicker : NSObject
 
 @end

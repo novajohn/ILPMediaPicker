@@ -25,30 +25,43 @@
 
 #import "ILPMediaCollectionFlowLayot.h"
 
-@implementation ILPMediaCollectionFlowLayot
+@implementation ILPMediaCollectionFlowLayot {
+    CGFloat _screenScale;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _screenScale = [UIScreen mainScreen].scale;
+        _itemDeterminantSize = 300;
+        self.minimumInteritemSpacing = 0;
+        self.itemSpacing = 5;
+    }
+    return self;
+}
 
 #pragma mark - Accessors
 
 - (void)setItemSpacing:(CGFloat)spacing {
     self.minimumLineSpacing = spacing;
-    self.minimumInteritemSpacing = spacing;
     _itemSpacing = spacing;
 }
 
 - (void)prepareLayout {
-    [super prepareLayout];
     
-    CGSize itemSize, collectionSize = self.collectionView.frame.size;
-    NSInteger itemsColumns = ceil(collectionSize.width / _itemDeterminantSize);
+    CGFloat collectionWidth = self.collectionView.bounds.size.width;
     
-    itemSize.width  = collectionSize.width - self.collectionView.contentInset.left - self.sectionInset.left - self.sectionInset.right - self.collectionView.contentInset.right - _itemSpacing * (itemsColumns - 1);
-    itemSize.width /= itemsColumns;
+    NSInteger columnsNumber = ceil(collectionWidth / _itemDeterminantSize);
     
-    itemSize.width = floorf(itemSize.width);
+    CGFloat itemWidth = (collectionWidth
+                         - self.collectionView.contentInset.left
+                         - self.sectionInset.left
+                         - self.sectionInset.right
+                         - self.collectionView.contentInset.right
+                         - _itemSpacing * (columnsNumber - 1)
+                         ) / columnsNumber;
     
-    itemSize.height = itemSize.width;
-    
-    self.itemSize = itemSize;
+    self.itemSize = CGSizeMake(itemWidth, itemWidth);
 }
 
 @end

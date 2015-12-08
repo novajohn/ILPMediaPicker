@@ -23,11 +23,15 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
+@import UIKit;
+@import Foundation;
+
+#import "ILPMediaPicker.h"
+#import "ILPMediaLibrary.h"
 #import "ILPMediaCollectionFlowLayot.h"
-#import "ILPMediaPickerItemCell.h"
 #import "ILPMediaPickerAddCell.h"
+#import "ILPMediaPickerCell.h"
+#import "ILPMediaCameraPicker.h"
 
 static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 
@@ -41,12 +45,13 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
  *  @warning The class should be mainly used as a target for inheritance. It does not call loadAssetsByType: initially.
  *
  */
-@interface ILPMediaCollectionController : UICollectionViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ILPMediaCollectionController : UICollectionViewController
 
-/**
- *  The maximum number of items which could be selected.
- */
-@property (nonatomic) NSInteger itemsLimit;
+@property (nonatomic, strong) id<ILPMediaLibrary> mediaLibrary;
+@property (nonatomic, strong) ILPMediaCameraPicker *cameraPicker;
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType;
+
+- (instancetype)initWithType:(ILPMediaType)mediaType withCollectionViewLayout:(UICollectionViewLayout *)layout NS_DESIGNATED_INITIALIZER;
 
 /**
  *  The placeholder image for an item cell before the thumbnail is loaded.
@@ -94,29 +99,33 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
  *
  *  @param assetType The `ALAssetType` constant.
  */
-- (void)loadAssetsByType:(NSString *)assetType;
+//- (void)loadAssetsByType:(NSString *)assetType;
 
 /**
  *  Loads assets from a given group.
  *
  *  @param anAssetGroup an `ALAssetGroup` instance.
  */
-- (void)loadAssetsByType:(NSString *)assetType fromGroup:(ALAssetsGroup *)anAssetGroup;
+//- (void)loadAssetsByType:(NSString *)assetType fromGroup:(ase)anAssetGroup;
 
 /**
  *  Adds asset object to collection view data source.
  *
  *  @param anAsset an `ALAsset/ALAssetGroup` objesct.
  */
-- (void)addAssetToData:(id)anAsset;
+//- (void)addAssetToData:(id)anAsset;
+
+- (NSInteger)properDataIndexWithPath:(NSIndexPath *)path;
 
 - (id)dataAssetForIndexPath:(NSIndexPath *)indexPath;
 
 - (void)registerCellNibOrClass:(id)nibOrClass;
 
-- (ILPMediaPickerItemCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath;
+- (ILPMediaPickerCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath;
 
-- (void)willLoadItemCell:(ILPMediaPickerItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)willLoadItemCell:(ILPMediaPickerCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+//- (UIImage *)loadThumbnailFromImage:(UIImage *)image;
 
 @end
 
@@ -133,6 +142,6 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
  *  @param controller The `ILPMediaCollectionController` object that is notifying the delegate.
  *  @param items      The selected assets.
  */
-- (void)mediaCollectionController:(ILPMediaCollectionController *)controller didSelectItems:(NSArray<ALAsset *> *)items;
+//- (void)mediaCollectionController:(ILPMediaCollectionController *)controller didSelectItems:(NSArray<ALAsset *> *)items;
 
 @end

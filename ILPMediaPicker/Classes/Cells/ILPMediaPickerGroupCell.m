@@ -1,8 +1,8 @@
 //
-//  ILPPhotoCollectionController.h
+//  ILPMediaPickerGroupCell.m
 //  ILPMediaPicker
 //
-//  Copyright © 2015 Evgeniy Novikov
+//  Copyright © 2015 Evgeniy Novikov 
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,13 @@
 //  THE SOFTWARE.
 //
 
-#import "ILPMediaCollectionController.h"
+#import "ILPMediaPickerGroupCell.h"
 
-@protocol ILPImageCollectionDelegate;
+@interface ILPMediaPickerGroupCell ()
 
-/**
- *  The `ILPImageCollectionController` class is a subclass of `ILPMediaCollectionController` which initially loads saved images assets and allows user to take a new photo.
- */
-@interface ILPImageCollectionController : ILPMediaCollectionController
-
-/**
- *  The object that acts as a delegate of the image collection controller.
- */
-@property (weak, nonatomic) id<ILPMediaCollectionDelegate, ILPImageCollectionDelegate> delegate;
 
 @end
 
-/**
- *  The `ILPImageCollectionDelegate` protocol defines the method that a delegate object should implement to be able to handle a new photo.
- */
-@protocol ILPImageCollectionDelegate <ILPMediaCollectionDelegate>
-
-@optional
-
-/**
- *  Notifies the delegate that the new photo has been taken.
- *
- *  @param controller The `ILPImageCollectionController` object that is notifying the delegate.
- *  @param photo      The taken photo image.
- */
-- (void)imageCollectionController:(ILPImageCollectionController *)controller didTakePhoto:(UIImage *)photo;
+@implementation ILPMediaPickerGroupCell
 
 @end

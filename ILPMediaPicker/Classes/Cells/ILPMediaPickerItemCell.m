@@ -46,7 +46,7 @@ static NSString * const kILPMediaPickerCheckmarkImageName = @"checkmark";
     super.selected = selected;
     
     _checkmarkView.hidden = !selected;
-    _imageView.alpha = selected ? 0.65f : 1.0f;
+    self.imageView.alpha = selected ? 0.65f : 1.0f;
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPALCachingImageManager.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,13 +23,14 @@
 //  THE SOFTWARE.
 //
 
+@import Foundation;
 @import UIKit;
+@import AssetsLibrary;
 
-#import "ILPMediaPickerCell.h"
+@interface ILPALCachingImageManager : NSObject
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
++ (instancetype)sharedManager;
+
+- (void)requestImageForAsset:(ALAsset *)asset targetSize:(CGSize)size resultHandler:(void(^)(UIImage *image))block;
 
 @end

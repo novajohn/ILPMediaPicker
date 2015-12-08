@@ -1,5 +1,5 @@
 //
-//  ILPVideoCollectionControllerViewController.h
+//  ILPMediaNavigationController.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,35 +23,24 @@
 //  THE SOFTWARE.
 //
 
-#import "ILPMediaCollectionController.h"
+@import UIKit;
 
-@protocol ILPVideoCollectionDelegate;
+#import "ILPMediaGroupCollectionController.h"
+#import "ILPMediaItemCollectionController.h"
 
-/**
- *  The `ILPVideoCollectionController` class is a subclass of `ILPMediaCollectionController` which initially loads saved video assets and allows user to capture a new video.
- */
-@interface ILPVideoCollectionController : ILPMediaCollectionController
+typedef NS_ENUM(NSUInteger, ILPMediaDisplayMode) {
+    ILPMediaDisplayModePlain,
+    ILPMediaDisplayModeGroup
+};
 
-/**
- *  The object that acts as a delegate of the video collection controller.
- */
-@property (weak, nonatomic) id<ILPMediaCollectionDelegate, ILPVideoCollectionDelegate> delegate;
+@interface ILPMediaNavigationController : UINavigationController
 
-@end
+@property (nonatomic) ILPMediaType mediaType;
+@property (nonatomic) ILPMediaDisplayMode displayMode;
 
-/**
- *  The `ILPVideoCollectionDelegate` protocol defines the method that a delegate object should implement to be able to handle a new video.
- */
-@protocol ILPVideoCollectionDelegate <ILPMediaCollectionDelegate>
+@property (nonatomic, copy) ILPMediaSelectedGroupBlock selectedGroupBlock;
+@property (nonatomic, copy) ILPMediaSelectedAssetsBlock selectedAssetsBlock;
 
-@optional
-
-/**
- *  Notifies the delegate that the new video has been captured.
- *
- *  @param controller The `ILPVideoCollectionController` object that is notifying the delegate.
- *  @param videoURL   The url of the captured video.
- */
-- (void)videoCollectionController:(ILPVideoCollectionController *)controller didCaptureVideoWithUrl:(NSURL *)videoURL;
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType withDisplayMode:(ILPMediaDisplayMode)displayMode;
 
 @end

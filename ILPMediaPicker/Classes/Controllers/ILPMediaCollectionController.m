@@ -23,34 +23,28 @@
 //  THE SOFTWARE.
 //
 
-#import "ILPMediaCollectionController.h"
 
-static NSString * const kILPMediaPickerItemCellNibName    = @"ILPMediaPickerItemCell";
-static NSString * const kILPMediaPickerItemCellReusableId = @"ilpMediaPickerItemCell";
-static NSString * const kILPMediaPickerAddCellNibName     = @"ILPMediaPickerAddCell";
-static NSString * const kILPMediaPickerAddCellReusableId  = @"ilpMediaPickerAddCell";
-static char * const kILPMediaPickerLoadingThumbnailsQueueLabel = "org.mediapicker.ilp.ThubmnailsLoadingQueee";
+#import "ILPMediaCollectionController.h"
+#import "ILPMediaLibrary.h"
+#import "ILPPHPhotoLibrary.h"
+#import "ILPALAssetsLibrary.h"
+
+static NSString * const kILPMediaPickerCellNibName           = @"ILPMediaPickerCell";
+static NSString * const kILPMediaPickerCellReuseIdentifier   = @"ilpMediaPickerCell";
+static NSString * const kILPMediaPickerAddCellNibName        = @"ILPMediaPickerAddCell";
+static NSString * const kILPMediaPickerAddCellReuseInetifier = @"ilpMediaPickerAddCell";
 
 static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 
 @interface ILPMediaCollectionController ()
 
-@property (copy, nonatomic) NSMutableArray *assetsData;
-@property (copy, nonatomic) NSMutableArray *selectedIndexPaths;
+@property (nonatomic) ILPMediaType mediaType;
 
-@property (copy, nonatomic) NSMutableDictionary *thumbnailsCache;
-
-@property (strong, nonatomic) ALAssetsLibrary *assetsLibrary;
+@property (nonatomic, strong) UIBarButtonItem *cancelBarButton;
 
 @end
 
-@implementation ILPMediaCollectionController {
-    dispatch_queue_t _thumbnailQueue;
-    NSMutableSet<NSIndexPath *> *_loadingIndexPaths;
-    NSIndexPath *_addingIndexPath;
-    UIImagePickerController *_imagePicker;
-    BOOL _showAddCell;
-}
+@implementation ILPMediaCollectionController
 
 @dynamic collectionViewLayout;
 @dynamic delegate;
@@ -71,269 +65,155 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 }
 
 - (instancetype)init {
-    return [self initWithCollectionViewLayout:[ILPMediaCollectionFlowLayot new]];
+    return [self initWithMediaType:ILPMediaTypeAll];
 }
 
-- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType {
+    return [self initWithType:mediaType withCollectionViewLayout:[ILPMediaCollectionFlowLayot new]];
+}
+
+- (instancetype)initWithType:(ILPMediaType)mediaType withCollectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
-        
-        _selectedIndexPaths = [NSMutableArray array];
-        _assetsData = [NSMutableArray array];
-        _thumbnailsCache = [NSMutableDictionary dictionary];
-        _loadingIndexPaths = [NSMutableSet set];
-        
-        _addingIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        
-        self.collectionView.allowsMultipleSelection = YES;
-        
         self.title  = kILPMediaPickerDefaultTitle;
-        _itemsLimit = 0;
-        _blankImage = nil;
         
-        _showAddCell = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+        _mediaType = mediaType;
         
-        _showAddCell = YES;
+        _mediaLibrary = [ILPPHPhotoLibrary new];
+        [_mediaLibrary setMediaType:mediaType];
         
-        [self registerCells];
+        switch (mediaType) {
+            case ILPMediaTypeImage:
+                _blankImage = [self.class mainBundleImageNamed:@"blank_image"];
+                _addImage = [self.class mainBundleImageNamed:@"camera"];
+                break;
+            case ILPMediaTypeVideo:
+                _blankImage = [self.class mainBundleImageNamed:@"blank_video"];
+                _addImage = [self.class mainBundleImageNamed:@"camcorder"];
+                break;
+            default:
+                _blankImage = [self.class mainBundleImageNamed:@"blank_media_item"];
+                _addImage = [self.class mainBundleImageNamed:@"add_icon"];
+                break;
+        }
         
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                              target:self
-                                                                                              action:@selector(barButtonItemDidTap:)];
+        self.navigationItem.leftBarButtonItem = self.cancelBarButton;
         
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                               target:self
-                                                                                               action:@selector(barButtonItemDidTap:)];
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-        
+        NSBundle *bundle = [NSBundle bundleForClass:self.class];
+        [self registerCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerCellNibName bundle:bundle]];
+        [self registerAddCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerAddCellNibName bundle:bundle]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddNotification:) name:kILPMediaPickerAddCellDidTapNotification object:nil];
-        
-        
+
     }
-    return  self;
+    return self;
 }
 
-- (UIImagePickerController *)imagePicker {
-    if (_showAddCell && !_imagePicker) {
-        _imagePicker = [[UIImagePickerController alloc] init];
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.delegate = self;
-        _showAddCell = YES;
+- (ILPMediaCameraPicker *)cameraPicker {
+    if (!_cameraPicker) {
+        _cameraPicker = [[ILPMediaCameraPicker alloc] initWithType:_mediaType];
+        _cameraPicker.delegate = self;
     }
-    return _imagePicker;
+    return _cameraPicker;
 }
 
-- (void)registerCells {
-    
-    NSBundle *bundle = [NSBundle bundleForClass:self.class];
-    [self registerCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerItemCellNibName bundle:bundle]];
-    [self registerAddCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerAddCellNibName bundle:bundle]];
+- (UIBarButtonItem *)cancelBarButton {
+    if (!_cancelBarButton) {
+        _cancelBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                            style:UIBarButtonItemStyleBordered
+                                                           target:self
+                                                           action:@selector(handleBarButtonTap:)];
+    }
+    return _cancelBarButton;
 }
 
 - (void)registerCellNibOrClass:(id)nibOrClass {
-    if ([nibOrClass isKindOfClass:UINib.class]) {
-        [self.collectionView registerNib:nibOrClass forCellWithReuseIdentifier:kILPMediaPickerItemCellReusableId];
-    }
-    else if (nibOrClass == UICollectionViewCell.class) {
-        [self.collectionView registerClass:nibOrClass forCellWithReuseIdentifier:nibOrClass];
-    }
+    [self registerNibOrClass:nibOrClass withReuseIdentifier:kILPMediaPickerCellReuseIdentifier];
 }
 
 - (void)registerAddCellNibOrClass:(id)nibOrClass {
+    [self registerNibOrClass:nibOrClass withReuseIdentifier:kILPMediaPickerAddCellReuseInetifier];
+}
+
+- (void)registerNibOrClass:(id)nibOrClass withReuseIdentifier:(NSString *)identifier {
     if ([nibOrClass isKindOfClass:UINib.class]) {
-        [self.collectionView registerNib:nibOrClass forCellWithReuseIdentifier:kILPMediaPickerAddCellReusableId];
+        [self.collectionView registerNib:nibOrClass forCellWithReuseIdentifier:identifier];
     }
     else if ([nibOrClass isKindOfClass:UICollectionViewCell.class]) {
-        [self.collectionView registerClass:nibOrClass forCellWithReuseIdentifier:nibOrClass];
+        [self.collectionView registerClass:nibOrClass forCellWithReuseIdentifier:identifier];
     }
-}
-
-- (void)loadAssetsByType:(NSString *)assetType {
-    if (!_assetsLibrary) {
-        _assetsLibrary = [[ALAssetsLibrary alloc] init];
-    }
-    
-    [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                                  usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                                      [self loadAssetsByType:assetType fromGroup:group];
-                                  }
-                                failureBlock:nil];
-}
-
-- (void)loadAssetsByType:(NSString *)assetType fromGroup:(ALAssetsGroup *)anAssetGroup {
-    [anAssetGroup enumerateAssetsUsingBlock:^(ALAsset *asset, NSUInteger index, BOOL *stop) {
-        if (asset && [[asset valueForProperty:ALAssetPropertyType] isEqualToString:assetType]) {
-            [self addAssetToData:asset];
-        }
-    }];
-}
-
-- (void)addAssetToData:(id)anAsset {
-    [_assetsData insertObject:anAsset atIndex:0];
 }
 
 #pragma mark - Collection View Data Source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _showAddCell ? _assetsData.count + 1 : _assetsData.count;
+    NSInteger numberOfAssets = [_mediaLibrary numberOfAssets];
+    return self.cameraPicker.isAvailable ? numberOfAssets + 1 : numberOfAssets;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_showAddCell && indexPath.row == _addingIndexPath.row) {
-        ILPMediaPickerAddCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerAddCellReusableId forIndexPath:indexPath];
+    if (self.cameraPicker.isAvailable && indexPath.row == 0) {
+        ILPMediaPickerAddCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerAddCellReuseInetifier forIndexPath:indexPath];
         cell.imageView.image = _addImage;
         return cell;
     }
     
-    ILPMediaPickerItemCell *cell = [self reusedItemCellForIndexPath:indexPath];
+    ILPMediaPickerCell *cell = [self reusedItemCellForIndexPath:indexPath];
+    
     [self willLoadItemCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
-- (void)willLoadItemCell:(ILPMediaPickerItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    ALAsset *asset = [self dataAssetForIndexPath:indexPath];
-    NSString *assetUrl = asset.defaultRepresentation.url.absoluteString;
-    UIImage *thumbnail = _thumbnailsCache[assetUrl];
+- (void)willLoadItemCell:(ILPMediaPickerCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    if (thumbnail) {
-        [self setImage:thumbnail forCell:cell];
-        return;
-    }
+    id<ILPMediaAsset> asset = [self dataAssetForIndexPath:indexPath];
     
-    if ([_loadingIndexPaths containsObject:indexPath]) {
-        [self setCellBlankImage:cell];
-        return;
-    }
-    
-    if (!_thumbnailQueue) {
-        _thumbnailQueue = dispatch_queue_create(kILPMediaPickerLoadingThumbnailsQueueLabel, NULL);
-    }
-    
-    [_loadingIndexPaths addObject:indexPath];
     [self setCellBlankImage:cell];
-    dispatch_async(_thumbnailQueue, ^{
-        if ([_loadingIndexPaths containsObject:indexPath]) {
-            UIImage *thumbnail = [self loadThumbnailFromImage:[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage]];
-            _thumbnailsCache[assetUrl] = thumbnail;
-            [_loadingIndexPaths removeObject:indexPath];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ILPMediaPickerItemCell *_cell = (ILPMediaPickerItemCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-                [self setImage:thumbnail forCell:_cell];
-            });
-            
-        }
-        
-    });
+
+    [asset loadImageWithSize:cell.bounds.size
+             withHandleBlock:^(UIImage *image) {
+                 [self setImage:image forCell:cell];
+             }];
 }
 
-- (ILPMediaPickerItemCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath {
-    return [self.collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerItemCellReusableId forIndexPath:indexPath];
+- (ILPMediaPickerCell *)reusedItemCellForIndexPath:(NSIndexPath *)indexPath {
+    return [self.collectionView dequeueReusableCellWithReuseIdentifier:kILPMediaPickerCellReuseIdentifier forIndexPath:indexPath];
 }
 
-- (ALAsset *)dataAssetForIndexPath:(NSIndexPath *)indexPath {
-    NSInteger dataIndex = _showAddCell ? indexPath.row - 1: indexPath.row;
-    return _assetsData[dataIndex];
+- (id<ILPMediaAsset>)dataAssetForIndexPath:(NSIndexPath *)indexPath {
+    NSInteger assetIndex = [self properDataIndexWithPath:indexPath];
+    return [_mediaLibrary assetAtIndex:assetIndex];
 }
 
-- (void)setCellBlankImage:(ILPMediaPickerItemCell *)cell {
+- (NSInteger)properDataIndexWithPath:(NSIndexPath *)path {
+   return self.cameraPicker.isAvailable ? path.row - 1: path.row;
+}
+
+- (void)setCellBlankImage:(ILPMediaPickerCell *)cell {
     [self setImage:_blankImage forCell:cell];
 }
 
-- (void)setImage:(UIImage *)image forCell:(ILPMediaPickerItemCell *)cell {
+- (void)setImage:(UIImage *)image forCell:(ILPMediaPickerCell *)cell {
     cell.imageView.contentMode = image == _blankImage ? UIViewContentModeCenter : UIViewContentModeScaleAspectFill;
     cell.imageView.image = image;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [_loadingIndexPaths removeObject:indexPath];
-}
-
-- (UIImage *)loadThumbnailFromImage:(UIImage *)image {
-    UIImage *thumbnail;
-    CGRect thumbRect = CGRectMake(0, 0, self.collectionViewLayout.itemDeterminantSize, self.collectionViewLayout.itemDeterminantSize);
-    CGImageRef imageRef = image.CGImage;
-    
-    CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
-    
-    CGSize cropSize;
-    CGFloat offsetX = 0, offsetY = 0;
-    CGFloat originalRatio = imageSize.width / imageSize.height;
-    CGFloat thumbRatio    = thumbRect.size.width / thumbRect.size.height;
-    
-    if (originalRatio >= thumbRatio) {
-        cropSize.height = imageSize.height;
-        cropSize.width  = cropSize.height * thumbRatio;
-        offsetX = (imageSize.width - cropSize.width) / 2;
-    }
-    else {
-        cropSize.width = imageSize.width;
-        cropSize.height = cropSize.width / thumbRatio;
-        offsetY = (imageSize.height - cropSize.height) / 2;
-    }
-    
-    
-    CGRect cropRect = CGRectMake(offsetX, offsetY, cropSize.width, cropSize.height);
-    imageRef = CGImageCreateWithImageInRect(imageRef, cropRect);
-    
-    // resize the image
-    UIGraphicsBeginImageContext(thumbRect.size);
-    [[UIImage imageWithCGImage:imageRef] drawInRect:thumbRect];
-    thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    // release CGImageRef to avoid memory leaks
-    CGImageRelease(imageRef);
-    
-    return thumbnail;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [_selectedIndexPaths addObject:indexPath];
-    
-    if (_selectedIndexPaths.count > 0 && !self.navigationItem.rightBarButtonItem.enabled) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [_selectedIndexPaths removeObject:indexPath];
-    
-    if (_selectedIndexPaths.count == 0) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath == _addingIndexPath) {
-        return YES;
-    }
-    
-    ILPMediaPickerItemCell *cell = (ILPMediaPickerItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    return (!_itemsLimit || _selectedIndexPaths.count < _itemsLimit) && cell.imageView.contentMode == UIViewContentModeScaleAspectFill;
 }
 
 #pragma mark - Camera use
 
 - (void)handleAddNotification:(NSNotification *)notificaion {
-    [self presentViewController:self.imagePicker animated:YES completion:nil];
+    
+    NSLog(@"camera user");
+    [self presentViewController:self.cameraPicker animated:YES completion:nil];
 }
 
-#pragma mark - Button Actions
+#pragma mark - Actions
 
-- (void)barButtonItemDidTap:(UIBarButtonItem *)buttonItem {
-    if (buttonItem == self.navigationItem.rightBarButtonItem) {
-        NSMutableArray<ALAsset *> *assets = [NSMutableArray array];
-        for (NSIndexPath *indexPath in _selectedIndexPaths) {
-            [assets addObject:[self dataAssetForIndexPath:indexPath]];
-        }
-        if ([self.delegate respondsToSelector:@selector(mediaCollectionController:didSelectItems:)]) {
-            [self.delegate mediaCollectionController:self didSelectItems:assets];
-        }
+- (void)handleBarButtonTap:(UIBarButtonItem *)button {
+    if (button == _cancelBarButton) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Dealloc

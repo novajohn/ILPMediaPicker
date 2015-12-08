@@ -1,8 +1,8 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPMediaCameraPicker.m
 //  ILPMediaPicker
 //
-//  Copyright © 2015 Evgeniy Novikov
+//  Copyright © 2015 Evgeniy Novikov 
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,27 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+@import MobileCoreServices.UTCoreTypes;
+#import "ILPMediaCameraPicker.h"
 
-#import "ILPMediaPickerCell.h"
+@implementation ILPMediaCameraPicker
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+- (instancetype)initWithType:(ILPMediaType)mediaType {
+    self = [super init];
+    if (self) {
+        _available = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+        if (_available) {
+            self.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if (mediaType == ILPMediaTypeImage) {
+                self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+            }
+            else if (mediaType == ILPMediaTypeVideo) {
+                self.mediaTypes = @[(NSString *) kUTTypeMovie];
+                self.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+            }
+        }
+    }
+    return self;
+}
 
 @end

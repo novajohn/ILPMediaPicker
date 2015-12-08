@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPMediaPickerGroupCell.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -23,13 +23,11 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
-
 #import "ILPMediaPickerCell.h"
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+@interface ILPMediaPickerGroupCell : ILPMediaPickerCell
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *amountTitle;
 
 @end

@@ -1,8 +1,8 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPCell.m
 //  ILPMediaPicker
 //
-//  Copyright © 2015 Evgeniy Novikov
+//  Copyright © 2015 Evgeniy Novikov 
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,14 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import "ILPCell.h"
 
-#import "ILPMediaPickerCell.h"
+@interface ILPCell ()
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+
+@end
+
+
+@implementation ILPCell
 
 @end

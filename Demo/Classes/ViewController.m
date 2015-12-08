@@ -7,71 +7,65 @@
 //
 
 #import "ViewController.h"
-#import "ILPMediaPickerController.h"
+#import "ILPMediaCollectionController.h"
+#import "ILPALAssetsLibrary.h"
+#import "ILPPHPhotoLibrary.h"
+
+#import "ILPMediaItemCollectionController.h"
+#import "ILPMediaGroupCollectionController.h"
+#import "ILPMediaNavigationController.h"
 
 static NSString * const kImagePickerTitle = @"Pick/Take An Image(s)";
 static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 
-@interface ViewController () <ILPMediaPickerDelegate>
+@interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *imagePickButton;
 @property (weak, nonatomic) IBOutlet UIButton *videoPickButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViews;
 
+@property (nonatomic, strong) ILPMediaNavigationController *nc;
+
 @end
 
-@implementation ViewController {
-    ILPMediaPickerController *_imageMediaPicker, *_videoMediaPicker;
-}
+@implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_imagePickButton setTitle:kImagePickerTitle forState:UIControlStateNormal];
-    [_videoPickButton setTitle:kVideoPickerTitle forState:UIControlStateNormal];
+  //  ILPALAssetsLibrary *assetLibrary = [ILPALAssetsLibrary new];
+    //id<ILPMediaLibrary> mediaLibrary = [ILPPHPhotoLibrary new];
+    
+   // NSLog(@"goodgroupscount: %ld", (long)[mediaLibrary numberOfGroups]);
+    
+    
+    
+    //[_imagePickButton setTitle:kImagePickerTitle forState:UIControlStateNormal];
+    //[_videoPickButton setTitle:kVideoPickerTitle forState:UIControlStateNormal];
+}
+
+- (UINavigationController *)nc {
+    if (!_nc) {
+        _nc = [[ILPMediaNavigationController alloc] initWithMediaType:ILPMediaTypeImage withDisplayMode:ILPMediaDisplayModeGroup];
+        _nc.selectedAssetsBlock = ^(NSArray *assets) {
+            NSLog(@"number %@", @(assets.count));
+        };
+    }
+    return _nc;
 }
 
 #pragma mark - Actions
 
 - (IBAction)imagePickButtonDidTap:(UIButton *)sender {
-    if (!_imageMediaPicker) {
-        _imageMediaPicker = [ILPMediaPickerController imagePicker];
-        _imageMediaPicker.title = kImagePickerTitle;
-        _imageMediaPicker.itemsLimit = 3;
-        _imageMediaPicker.itemDeterminantSize = 500;
-        _imageMediaPicker.delegate = self;
-    }
-    [self presentViewController:_imageMediaPicker animated:YES completion:nil];
+
+    //ILPMediaGroupCollectionController *gcc = [[ILPMediaGroupCollectionController alloc] initWithMediaType:ILPMediaTypeImage];
+    
+    [self presentViewController:self.nc animated:YES completion:nil];
 }
 
 - (IBAction)videoPickButtonDidTap:(UIButton *)sender {
-    if (!_videoMediaPicker) {
-        _videoMediaPicker = [ILPMediaPickerController videoPicker];
-        _videoMediaPicker.title = kVideoPickerTitle;
-        _videoMediaPicker.delegate = self;
-    }
-    [self presentViewController:_videoMediaPicker animated:YES completion:nil];
-}
-
-#pragma mark - ILPMediaPickerDelegate
-
-- (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didTakePhoto:(UIImage *)photo {
-   //TODO: handle the new taken photo
-}
-
-- (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didPickItems:(NSArray *)items {
-    for (int i = 0; i < _imageViews.count; i++) {
-        UIImageView *imageView = self.imageViews[i];
-        ALAsset *asset = items[i];
-        imageView.image = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.opaque = NO;
-    }
-}
-
-- (void)mediaPicker:(ILPMediaPickerController *)mediaPicker didCaptureVideoWithURL:(NSURL *)videoUrl {
-    //TODO: use the url to work with new captured video
+    
 }
 
 @end

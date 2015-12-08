@@ -1,5 +1,5 @@
 //
-//  ILPMediaPickerItemCell.h
+//  ILPMediaCameraPicker.h
 //  ILPMediaPicker
 //
 //  Copyright © 2015 Evgeniy Novikov
@@ -24,12 +24,12 @@
 //
 
 @import UIKit;
+#import "ILPMediaPicker.h"
 
-#import "ILPMediaPickerCell.h"
+@interface ILPMediaCameraPicker : UIImagePickerController
 
-/**
- *  The `ILPMediaPickerItemCell` is a custom class for the topmost cell in `ILPMediaPickerItemCell.xib`. It toggles cells appearance depending on selected status.
- */
-@interface ILPMediaPickerItemCell : ILPMediaPickerCell
+@property (nonatomic, getter=isAvailable) BOOL available;
+
+- (instancetype)initWithType:(ILPMediaType)mediaType;
 
 @end

@@ -113,6 +113,60 @@
             </objects>
             <point key="canvasLocation" x="448" y="403"/>
         </scene>
+        <!--TestCVC-->
+        <scene sceneID="Exp-32-5dB">
+            <objects>
+                <collectionViewController id="3dc-OF-L0j" customClass="ILPTestCVC" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="o4k-gL-peG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="1" green="0.50513980260000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="B4Y-E0-h7b">
+                            <size key="itemSize" width="300" height="300"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rid" id="4w0-e3-v3g" customClass="ILPCell">
+                                <rect key="frame" x="150" y="0.0" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8h-ve-VlF">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="y8h-ve-VlF" secondAttribute="trailing" id="0dd-9h-9iB"/>
+                                    <constraint firstItem="y8h-ve-VlF" firstAttribute="leading" secondItem="4w0-e3-v3g" secondAttribute="leading" id="6UO-fs-X7e"/>
+                                    <constraint firstAttribute="bottom" secondItem="y8h-ve-VlF" secondAttribute="bottom" id="aDW-oO-VBI"/>
+                                    <constraint firstItem="y8h-ve-VlF" firstAttribute="top" secondItem="4w0-e3-v3g" secondAttribute="top" id="t2v-gp-g2S"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="y8h-ve-VlF" id="giV-kX-yuC"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="3dc-OF-L0j" id="uZp-IV-c24"/>
+                            <outlet property="delegate" destination="3dc-OF-L0j" id="hzK-ar-HOb"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XEC-hv-qrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="448" y="1097"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ILPMediaPicker.bundle/blank_image" width="50" height="45"/>
