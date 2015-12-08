@@ -12,6 +12,7 @@
 		BD1E1E3E1C1587AA006B7C5E /* ILPMediaGroupCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E1E3D1C1587AA006B7C5E /* ILPMediaGroupCollectionController.m */; };
 		BD1E1E411C1588C7006B7C5E /* ILPMediaPickerGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E1E401C1588C7006B7C5E /* ILPMediaPickerGroupCell.m */; };
 		BD1E1E441C16A131006B7C5E /* ILPMediaNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E1E431C16A131006B7C5E /* ILPMediaNavigationController.m */; };
+		BD3453B21C16E16E00D085B6 /* ILPMediaLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3453B11C16E16E00D085B6 /* ILPMediaLibrary.m */; };
 		BD5B78851C030628005109D6 /* ILPMediaPicker.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */; };
 		BD5B78911C031903005109D6 /* ILPMediaPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD5B78901C031903005109D6 /* ILPMediaPicker.bundle */; };
 		BD88697D1BFEEE2600C94CFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8869761BFEEE2600C94CFF /* main.m */; };
@@ -49,6 +50,7 @@
 		BD1E1E401C1588C7006B7C5E /* ILPMediaPickerGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaPickerGroupCell.m; path = Classes/Cells/ILPMediaPickerGroupCell.m; sourceTree = "<group>"; };
 		BD1E1E421C16A131006B7C5E /* ILPMediaNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ILPMediaNavigationController.h; path = Classes/Controllers/ILPMediaNavigationController.h; sourceTree = "<group>"; };
 		BD1E1E431C16A131006B7C5E /* ILPMediaNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaNavigationController.m; path = Classes/Controllers/ILPMediaNavigationController.m; sourceTree = "<group>"; };
+		BD3453B11C16E16E00D085B6 /* ILPMediaLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ILPMediaLibrary.m; path = Classes/ILPMediaLibrary.m; sourceTree = "<group>"; };
 		BD3C8ED71BD8B60A00A124B2 /* ILPMediaPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILPMediaPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD5B78841C030628005109D6 /* ILPMediaPicker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ILPMediaPicker.podspec; sourceTree = SOURCE_ROOT; };
 		BD5B78901C031903005109D6 /* ILPMediaPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ILPMediaPicker.bundle; path = Resources/ILPMediaPicker.bundle; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				BDB54E481C113FB30063A862 /* ILPMediaPicker.h */,
 				BDB54E491C113FB30063A862 /* ILPMediaPicker.m */,
 				BDB944701C0C5E8400138F36 /* ILPMediaLibrary.h */,
+				BD3453B11C16E16E00D085B6 /* ILPMediaLibrary.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				BD1E1E411C1588C7006B7C5E /* ILPMediaPickerGroupCell.m in Sources */,
 				BDB54E511C118A0D0063A862 /* ILPMediaPickerCell.m in Sources */,
 				BDB54E471C1009D30063A862 /* ILPALCachingImageManager.m in Sources */,
+				BD3453B21C16E16E00D085B6 /* ILPMediaLibrary.m in Sources */,
 				BD8869911BFEF01800C94CFF /* AppDelegate.m in Sources */,
 				BD1E1E3E1C1587AA006B7C5E /* ILPMediaGroupCollectionController.m in Sources */,
 				BDB54E4A1C113FB30063A862 /* ILPMediaPicker.m in Sources */,

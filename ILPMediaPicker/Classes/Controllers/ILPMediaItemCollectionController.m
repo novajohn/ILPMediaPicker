@@ -35,14 +35,9 @@
 
 @implementation ILPMediaItemCollectionController
 
-- (instancetype)initWithMediaType:(ILPMediaType)mediaType {
-    return [self initWithMediaType:mediaType withSelectedAssetsBlock:nil];
-}
-
 - (instancetype)initWithMediaType:(ILPMediaType)mediaType withSelectedAssetsBlock:(ILPMediaSelectedAssetsBlock)block {
-    self = [super initWithMediaType:mediaType];
+    self = [super initWithMediaType:mediaType withSelectedAssetsBlock:block];
     if (self) {
-        _selectedAssetsBlock = block;
         _selectedItemsLimit = 0;
         _selectedAssets = [NSMutableArray array];
         
@@ -130,8 +125,8 @@
 
 - (void)handleDoneBarButtonTap:(UIBarButtonItem *)button {
     if (button == _doneBarButton) {
-        if (_selectedAssetsBlock) {
-            _selectedAssetsBlock(_selectedAssets);
+        if (self.selectedAssetsBlock) {
+            self.selectedAssetsBlock(_selectedAssets);
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }

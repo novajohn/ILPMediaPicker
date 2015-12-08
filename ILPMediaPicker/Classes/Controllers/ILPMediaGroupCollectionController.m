@@ -41,6 +41,7 @@
     if (self) {
         _selectedGroupBlock = selectedBlock;
         
+        self.title = @"Media Groups";
         self.collectionView.allowsMultipleSelection = NO;
         
         [self.mediaLibrary loadGroupsWithBlock:^(NSArray<id<ILPMediaGroup>> *groups) {

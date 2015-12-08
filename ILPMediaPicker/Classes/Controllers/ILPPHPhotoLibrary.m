@@ -25,6 +25,49 @@
 
 #import "ILPPHPhotoLibrary.h"
 
+@interface ILPPHAsset ()
+
+
+@end
+
+@implementation ILPPHAsset
+
+- (instancetype)initWithBaseAsset:(PHAsset *)baseAsset {
+    self = [super init];
+    if (self) {
+        self.baseAsset = baseAsset;
+    }
+    return self;
+}
+
+- (void)setBaseAsset:(PHAsset *)baseAsset {
+    switch (baseAsset.mediaType) {
+        case PHAssetMediaTypeImage:
+            self.mediaType = ILPMediaTypeImage;
+            break;
+        case PHAssetMediaTypeVideo:
+            self.mediaType = ILPMediaTypeVideo;
+            break;
+        default:
+            self.mediaType = ILPMediaTypeAll;
+            break;
+    }
+    _baseAsset = baseAsset;
+}
+
+- (void)loadImageWithSize:(CGSize)size withHandleBlock:(void (^)(UIImage *))block {
+    PHImageManager *imageManager = [PHCachingImageManager defaultManager];
+    [imageManager requestImageForAsset:_baseAsset
+                            targetSize:size
+                           contentMode:PHImageContentModeAspectFill
+                               options:nil
+                         resultHandler:^(UIImage *image, NSDictionary *info) {
+                             block(image);
+                         }];
+}
+
+@end
+
 @interface ILPPHAssetCollection ()
 
 @property (nonatomic, strong) PHAssetCollection *baseCollection;
@@ -62,14 +105,15 @@
 }
 
 - (void)loadPosterWithSize:(CGSize)size withHandleBlock:(void (^)(UIImage *))block {
-    [_assetsResult.firstObject loadImageWithSize:size withHandleBlock:block];
+    ILPPHAsset *mediaAsset = [[ILPPHAsset alloc] initWithBaseAsset:_assetsResult.firstObject];
+    [mediaAsset loadImageWithSize:size withHandleBlock:block];
 }
 
 - (NSInteger)numberOfAsset {
     return _assetsResult.count;
 }
 
-- (PHAssetCollection *)baseAsset {
+- (PHAssetCollection *)baseAssetGroup {
     return _baseCollection;
 }
 
@@ -80,7 +124,7 @@
 @property (nonatomic) ILPMediaType mediaType;
 
 @property (copy, nonatomic) NSMutableArray<ILPPHAssetCollection *> *assetCollections;
-@property (copy, nonatomic) NSMutableArray<PHAsset *> *assetsList;
+@property (copy, nonatomic) NSMutableArray<ILPPHAsset *> *assetsList;
 
 @property (strong, nonatomic) ILPPHAssetCollection *selectedCollection;
 
@@ -154,14 +198,15 @@
     
     PHFetchResult *assetsResult;
     if (_selectedCollection) {
-        assetsResult = [PHAsset fetchAssetsInAssetCollection:[_selectedCollection baseAsset] options:self.typeFetchOption];
+        assetsResult = [PHAsset fetchAssetsInAssetCollection:[_selectedCollection baseAssetGroup] options:self.typeFetchOption];
     }
     else {
-        assetsResult = [PHAsset fetchAssetsWithMediaType:_assetMediaType options:nil];
+        assetsResult = [PHAsset fetchAssetsWithOptions:self.typeFetchOption];
     }
     
     [assetsResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-        [_assetsList addObject:asset];
+        ILPPHAsset *mediaAsset = [[ILPPHAsset alloc] initWithBaseAsset:asset];
+        [_assetsList addObject:mediaAsset];
     }];
     
     if (block) {
@@ -200,24 +245,8 @@
     return _assetsList[index];
 }
 
-
 - (void)setSelectedGroup:(id<ILPMediaGroup>)mediaGroup {
     _selectedCollection = mediaGroup;
-}
-
-@end
-
-@implementation PHAsset (ILPMediaAsset)
-
-- (void)loadImageWithSize:(CGSize)size withHandleBlock:(void (^)(UIImage *))block {
-    PHImageManager *imageManager = [PHCachingImageManager defaultManager];
-    [imageManager requestImageForAsset:self
-                            targetSize:size
-                           contentMode:PHImageContentModeAspectFill
-                               options:nil
-                         resultHandler:^(UIImage *image, NSDictionary *info) {
-                             block(image);
-                         }];
 }
 
 @end

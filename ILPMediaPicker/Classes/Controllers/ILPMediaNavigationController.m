@@ -66,8 +66,13 @@
 }
 
 - (void)setSelectedAssetsBlock:(ILPMediaSelectedAssetsBlock)selectedAssetsBlock {
+    selectedAssetsBlock = ^(NSArray *assets) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        selectedAssetsBlock(assets);
+    };
     _selectedAssetsBlock = selectedAssetsBlock;
     self.itemCollectionController.selectedAssetsBlock = selectedAssetsBlock;
+    self.groupCollectionController.selectedAssetsBlock = selectedAssetsBlock;
 }
 
 @end

@@ -24,6 +24,7 @@
 //
 
 @import UIKit;
+@import MobileCoreServices.UTCoreTypes;
 #import "ILPMediaPicker.h"
 
 @interface ILPMediaCameraPicker : UIImagePickerController

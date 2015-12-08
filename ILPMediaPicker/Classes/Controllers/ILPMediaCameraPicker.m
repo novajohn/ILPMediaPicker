@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-@import MobileCoreServices.UTCoreTypes;
 #import "ILPMediaCameraPicker.h"
 
 @implementation ILPMediaCameraPicker

@@ -35,6 +35,8 @@
 
 static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 
+typedef void(^ILPMediaSelectedAssetsBlock)(NSArray<id<ILPMediaAsset>> *assets);
+
 @protocol ILPMediaCollectionDelegate;
 
 /**
@@ -49,9 +51,12 @@ static NSString * const kILPMediaPickerBundleName = @"ILPMediaPicker";
 
 @property (nonatomic, strong) id<ILPMediaLibrary> mediaLibrary;
 @property (nonatomic, strong) ILPMediaCameraPicker *cameraPicker;
+
+@property (nonatomic, copy) ILPMediaSelectedAssetsBlock selectedAssetsBlock;
+
 - (instancetype)initWithMediaType:(ILPMediaType)mediaType;
 
-- (instancetype)initWithType:(ILPMediaType)mediaType withCollectionViewLayout:(UICollectionViewLayout *)layout NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType withSelectedAssetsBlock:(ILPMediaSelectedAssetsBlock)block;
 
 /**
  *  The placeholder image for an item cell before the thumbnail is loaded.

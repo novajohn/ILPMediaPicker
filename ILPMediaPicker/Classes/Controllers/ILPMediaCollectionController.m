@@ -36,7 +36,7 @@ static NSString * const kILPMediaPickerAddCellReuseInetifier = @"ilpMediaPickerA
 
 static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 
-@interface ILPMediaCollectionController ()
+@interface ILPMediaCollectionController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) ILPMediaType mediaType;
 
@@ -69,11 +69,11 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
 }
 
 - (instancetype)initWithMediaType:(ILPMediaType)mediaType {
-    return [self initWithType:mediaType withCollectionViewLayout:[ILPMediaCollectionFlowLayot new]];
+    return [self initWithMediaType:mediaType withSelectedAssetsBlock:nil];
 }
 
-- (instancetype)initWithType:(ILPMediaType)mediaType withCollectionViewLayout:(UICollectionViewLayout *)layout {
-    self = [super initWithCollectionViewLayout:layout];
+- (instancetype)initWithMediaType:(ILPMediaType)mediaType withSelectedAssetsBlock:(ILPMediaSelectedAssetsBlock)block {
+    self = [super initWithCollectionViewLayout:[ILPMediaCollectionFlowLayot new]];
     if (self) {
         self.title  = kILPMediaPickerDefaultTitle;
         
@@ -81,6 +81,8 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         
         _mediaLibrary = [ILPPHPhotoLibrary new];
         [_mediaLibrary setMediaType:mediaType];
+        
+        _selectedAssetsBlock = block;
         
         switch (mediaType) {
             case ILPMediaTypeImage:
@@ -104,9 +106,10 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
         [self registerAddCellNibOrClass:[UINib nibWithNibName:kILPMediaPickerAddCellNibName bundle:bundle]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddNotification:) name:kILPMediaPickerAddCellDidTapNotification object:nil];
-
+        
     }
     return self;
+    
 }
 
 - (ILPMediaCameraPicker *)cameraPicker {
@@ -200,12 +203,32 @@ static NSString *const kILPMediaPickerDefaultTitle = @"Media Item Picker";
     cell.imageView.image = image;
 }
 
+#pragma mark - Image Picker controller Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    ILPMediaAsset *mediaAsset = [ILPMediaAsset new];
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        mediaAsset.mediaType = ILPMediaTypeImage;
+        mediaAsset.image = info[UIImagePickerControllerOriginalImage];
+    }
+    else {
+        mediaAsset.mediaType = ILPMediaTypeVideo;
+        mediaAsset.videoUrl = info[UIImagePickerControllerMediaURL];
+    }
+    
+    [self.cameraPicker dismissViewControllerAnimated:YES completion:nil];
+    
+    if (_selectedAssetsBlock) {
+        _selectedAssetsBlock(@[mediaAsset]);
+    }
+}
+
 #pragma mark - Camera use
 
 - (void)handleAddNotification:(NSNotification *)notificaion {
-    
-    NSLog(@"camera user");
-    [self presentViewController:self.cameraPicker animated:YES completion:nil];
+    [self.navigationController presentViewController:self.cameraPicker animated:YES completion:nil];
 }
 
 #pragma mark - Actions

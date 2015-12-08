@@ -25,8 +25,6 @@
 
 #import "ILPMediaCollectionController.h"
 
-typedef void(^ILPMediaSelectedAssetsBlock)(NSArray<id<ILPMediaAsset>> *assets);
-
 @interface ILPMediaItemCollectionController : ILPMediaCollectionController
 
 @property (nonatomic, strong) id<ILPMediaGroup> baseGroup;
@@ -35,11 +33,7 @@ typedef void(^ILPMediaSelectedAssetsBlock)(NSArray<id<ILPMediaAsset>> *assets);
  */
 @property (nonatomic) NSInteger selectedItemsLimit;
 
-@property (nonatomic, copy) ILPMediaSelectedAssetsBlock selectedAssetsBlock;
-
 @property (nonatomic, getter=isClearingSelectionOnAppear) BOOL clearSelectionOnAppear;
-
-- (instancetype)initWithMediaType:(ILPMediaType)mediaType withSelectedAssetsBlock:(ILPMediaSelectedAssetsBlock)block;
 
 - (void)setBaseGroup:(id<ILPMediaGroup>)baseGroup withCollectionUpdate:(BOOL)update;
 

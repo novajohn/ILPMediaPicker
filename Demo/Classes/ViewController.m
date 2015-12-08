@@ -23,7 +23,7 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 @property (weak, nonatomic) IBOutlet UIButton *imagePickButton;
 @property (weak, nonatomic) IBOutlet UIButton *videoPickButton;
 
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViews;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray<UIImageView *> *imageViews;
 
 @property (nonatomic, strong) ILPMediaNavigationController *nc;
 
@@ -48,8 +48,11 @@ static NSString * const kVideoPickerTitle = @"Pick/Capture A Video(s)";
 - (UINavigationController *)nc {
     if (!_nc) {
         _nc = [[ILPMediaNavigationController alloc] initWithMediaType:ILPMediaTypeImage withDisplayMode:ILPMediaDisplayModeGroup];
-        _nc.selectedAssetsBlock = ^(NSArray *assets) {
+        _nc.selectedAssetsBlock = ^(NSArray<ILPMediaAsset *> *assets) {
             NSLog(@"number %@", @(assets.count));
+           // UIImage *image = assets[0].image;
+            self.imageViews[0].contentMode = UIViewContentModeScaleAspectFill;
+            self.imageViews[0].image = assets[0].image;
         };
     }
     return _nc;

@@ -30,7 +30,23 @@
 
 @protocol ILPMediaAsset <NSObject>
 
+- (ILPMediaType)mediaType;
+
 - (void)loadImageWithSize:(CGSize)size withHandleBlock:(void(^)(UIImage *image))block;
+
+- (id)baseAsset;
+
+- (UIImage *)image;
+
+- (NSString *)videoUrl;
+
+@end
+
+@interface ILPMediaAsset : NSObject <ILPMediaAsset>
+
+@property (nonatomic) ILPMediaType mediaType;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, copy) NSString *videoUrl;
 
 @end
 
@@ -42,7 +58,7 @@
 
 - (void)loadPosterWithSize:(CGSize)size withHandleBlock:(void(^)(UIImage *image))block;
 
-- (id)baseAsset;
+- (id)baseAssetGroup;
 
 @end
 
@@ -53,8 +69,6 @@
 - (void)loadGroupsWithBlock:(void(^)(NSArray<id<ILPMediaGroup>> *groups))block;
 
 - (void)loadAssetsWithBlock:(void(^)(NSArray<id<ILPMediaAsset>> *assets))block;
-
-- (void)loadAssetsWithGroup:(id<ILPMediaGroup>)group withHandleBlock:(void(^)(NSArray<id<ILPMediaAsset>> *assets))block;
 
 - (NSInteger)numberOfAssets;
 

@@ -35,6 +35,8 @@
 
 @end
 
-@interface PHAsset(ILPMediaAsset)<ILPMediaAsset>
+@interface ILPPHAsset: ILPMediaAsset
+
+@property (nonatomic, strong) PHAsset *baseAsset;
 
 @end
